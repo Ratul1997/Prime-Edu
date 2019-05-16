@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    >
+
+    <item
+        android:id="@+id/navigation_class"
+        android:icon="@drawable/attendance"
+        android:title="Class"
+        />
+
+    <item
+        android:id="@+id/navigation_post"
+        android:icon="@drawable/notice"
+        android:title="Post" />
+    <item
+        android:id="@+id/navigation_about"
+        android:icon="@drawable/profile"
+        android:title="About" />
+
+
+</menu>

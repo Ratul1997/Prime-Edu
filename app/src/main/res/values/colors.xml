@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#6baae1</color>
+    <color name="colorAccent">#C1272D</color>
+    <color name="bgBottomNavigation">#fe485a</color>
+    <color name="texTcolor">#000</color>
+    <color name="texTSelctedColor">#fff</color>
+</resources>
+    <!--#297FCA-->
+<!--#6baae1-->

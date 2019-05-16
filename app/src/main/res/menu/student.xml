@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/viewprf"
+        android:title="View Profile"
+        android:icon="@drawable/ic_action_view"/>
+
+    <item
+        android:id="@+id/giveMarks"
+        android:title="Give Marks"
+        android:icon="@drawable/ic_action_gmarks"/>
+</menu>

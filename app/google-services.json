@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "594260183595",
+    "firebase_url": "https://primeedu-7f9bc.firebaseio.com",
+    "project_id": "primeedu-7f9bc",
+    "storage_bucket": "primeedu-7f9bc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:594260183595:android:207344196a51b175",
+        "android_client_info": {
+          "package_name": "com.example.rat.primeedu"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "594260183595-fh3evcagnlr0mvthbgbpki1rb46veskh.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.rat.primeedu",
+            "certificate_hash": "fc1e19d0906f2e82ae398d05cc16e26931e595e7"
+          }
+        },
+        {
+          "client_id": "594260183595-103b28op2jeolcvlnveqsqfhp3g6o5oo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCqGyY1yQUDYr1OuK0bfGxSjAY42j3E_aQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "594260183595-103b28op2jeolcvlnveqsqfhp3g6o5oo.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

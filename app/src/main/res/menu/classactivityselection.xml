@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:title="Take Attendence"
+        android:id="@+id/takeAttendence"
+        android:icon="@drawable/ic_action_schedule"
+        />
+    <item
+        android:title="View Marks"
+        android:id="@+id/Vmarks"
+        android:icon="@drawable/ic_action_vmarks"
+        />
+    <item
+        android:title="Give Marks"
+        android:id="@+id/Gmarks"
+        android:icon="@drawable/ic_action_gmarks"
+        />
+</menu>
