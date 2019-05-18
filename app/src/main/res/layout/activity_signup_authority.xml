@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp"
+    android:orientation="vertical"
+    android:background="#F7FBFD">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Sign Up"
+        android:textSize="35dp"
+        android:textColor="#297FCA"
+        android:layout_marginBottom="15dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="~Authority~"
+        android:textSize="25dp"
+        android:layout_marginBottom="10dp"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Personal Information"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:layout_marginBottom="15dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/layout_shape"
+                android:padding="20dp"
+                android:orientation="vertical"
+                android:layout_marginBottom="10dp">
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="18dp"
+                    android:hint="First name"
+                    android:paddingLeft="10dp"
+                    android:backgroundTint="#297FCA"
+                    android:layout_marginBottom="10dp"/>
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="18dp"
+                    android:hint="Last name"
+                    android:paddingLeft="10dp"
+                    android:backgroundTint="#297FCA"
+                    android:layout_marginBottom="10dp"/>
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="18dp"
+                    android:hint="Email address"
+                    android:paddingLeft="10dp"
+                    android:backgroundTint="#297FCA"
+                    android:layout_marginBottom="10dp"/>
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="18dp"
+                    android:hint="Contact number"
+                    android:paddingLeft="10dp"
+                    android:backgroundTint="#297FCA"
+                    android:layout_marginBottom="10dp"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Academic Information"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:layout_marginBottom="15dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/layout_shape"
+                android:padding="20dp"
+                android:orientation="vertical"
+                android:layout_marginBottom="10dp">
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="18dp"
+                    android:hint="Teachers number"
+                    android:paddingLeft="10dp"
+                    android:backgroundTint="#297FCA"
+                    android:layout_marginBottom="10dp"/>
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="18dp"
+                    android:hint="Students number"
+                    android:paddingLeft="10dp"
+                    android:backgroundTint="#297FCA"
+                    android:layout_marginBottom="10dp"/>
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="18dp"
+                    android:hint="Staff number"
+                    android:paddingLeft="10dp"
+                    android:backgroundTint="#297FCA"
+                    android:layout_marginBottom="10dp"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Security Information"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:layout_marginBottom="15dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/layout_shape"
+                android:padding="20dp"
+                android:orientation="vertical"
+                android:layout_marginBottom="30dp">
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="18dp"
+                    android:hint="Create Password"
+                    android:paddingLeft="10dp"
+                    android:backgroundTint="#297FCA"/>
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="18dp"
+                    android:hint="Confirm Password"
+                    android:paddingLeft="10dp"
+                    android:backgroundTint="#297FCA"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="bottom|center"
+                android:orientation="vertical">
+
+                <Button
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:text="Sign-Up"
+                    android:textSize="20dp"
+                    android:textAllCaps="false"
+                    android:layout_gravity="center"
+                    android:background="@drawable/login_buttonshape"
+                    android:layout_marginBottom="10dp"/>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Have an account? • "
+                        android:textSize="15dp" />
+
+                    <TextView
+                        android:id="@+id/log_in_id"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Log-In"
+                        android:textSize="15dp"
+                        android:textColor="#297FCA"/>
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

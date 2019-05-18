@@ -3,6 +3,8 @@
     package="com.example.rat.primeedu">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    1
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -11,29 +13,38 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Teacher.MainActivity">
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".TeacherActivity" />
-        <activity android:name=".AddSection" />
-        <activity android:name=".ClassActivity" />
-        <activity android:name=".TakeAttendenceActivity" />
+        <activity android:name=".Teacher.TeacherActivity" />
+        <activity android:name=".Teacher.AddSection" />
+        <activity android:name=".Teacher.ClassActivity" />
+        <activity android:name=".Teacher.TakeAttendenceActivity" />
         <activity
-            android:name=".GiveMarksToStudent"
+            android:name=".Teacher.GiveMarksToStudent"
             android:theme="@style/MarksTheme" />
-        <activity android:name=".ViewStudentActivity" />
-        <activity android:name=".StudentProfileByTeacher" />
+        <activity android:name=".Teacher.ViewStudentActivity" />
+        <activity android:name=".Teacher.StudentProfileByTeacher" />
 
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
 
-        <activity android:name=".InsideSectionActivity" />
-
+        <activity android:name=".Teacher.InsideSectionActivity" />
+        <activity android:name=".Login.Login" />
+        <activity android:name=".Login.SignUp" />
+        <activity android:name=".TeacherPosts" />
+        <activity android:name=".UploadPicture" />
+        <activity android:name=".Login.LoginActivity" />
+        <activity android:name=".Login.SignupAuthority" />
+        <activity android:name=".Login.SignupStudent" />
+        <activity android:name=".Login.SignUpTeacher" />
+        <activity android:name=".SignUp2" />
+        <activity android:name=".AuthorityHomeActivity.AuthorityMainActivity"></activity>
     </application>
 
 </manifest>
