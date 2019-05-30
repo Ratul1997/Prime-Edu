@@ -22,6 +22,10 @@ import com.example.rat.primeedu.Teacher.GiveMarksToStudent;
 import com.example.rat.primeedu.Teacher.InsideSectionActivity;
 import com.example.rat.primeedu.Teacher.TakeAttendenceActivity;
 import com.example.rat.primeedu.Teacher.ViewStudentActivity;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.lang.reflect.Method;
 import java.util.List;
@@ -32,12 +36,18 @@ public class SectionAdapter extends RecyclerView.Adapter<ClassNamesAdapter.ViewH
     List<Integer>Student;
     Context context;
     String CurrentClass;
+    String type;
+    String SchoolName;
+    String SchoolId;
 
-    public SectionAdapter(List<String> section, List<Integer> student, Context context, String currentClass) {
+    public SectionAdapter(List<String> section, List<Integer> student, Context context, String currentClass, String type, String schoolId,String SchoolName) {
         Section = section;
         Student = student;
         this.context = context;
         CurrentClass = currentClass;
+        this.type = type;
+        SchoolId = schoolId;
+        this.SchoolName = SchoolName;
     }
 
     @NonNull
@@ -57,82 +67,62 @@ public class SectionAdapter extends RecyclerView.Adapter<ClassNamesAdapter.ViewH
         ((ClassNamesAdapter.ViewHolder) holder).lin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 Intent intent = new Intent(context,InsideSectionActivity.class);
                 intent.putExtra("stdNo",Integer.toString(Student.get(position)));
                 intent.putExtra("sectionNo",Section.get(position));
                 intent.putExtra("classNo",CurrentClass);
+                intent.putExtra("type",type);
+                intent.putExtra("schollId",SchoolId);
+                intent.putExtra("schoolname",SchoolName);
                 context.startActivity(intent);
             }
         });
 
         ((ClassNamesAdapter.ViewHolder) holder).lin.setOnLongClickListener(new View.OnLongClickListener() {
-            @RequiresApi(api = Build.VERSION_CODES.KITKAT)
             @Override
             public boolean onLongClick(View v) {
-
                 PopupMenu popup = new PopupMenu(v.getContext(), v, Gravity.RIGHT);
-                try {
-                    Method method = popup.getMenu().getClass().getDeclaredMethod("setOptionalIconsVisible", boolean.class);
-                    method.setAccessible(true);
-                    method.invoke(popup.getMenu(), true);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-                final int p = position;
 
-                popup.getMenuInflater().inflate(R.menu.classactivityselection,popup.getMenu());
+                popup.getMenuInflater().inflate(R.menu.delete,popup.getMenu());
+
+                if(type.equals("2")){
+                    popup.getMenu().findItem(R.id.deletepost).setVisible(false);
+                    popup.getMenu().findItem(R.id.deletepost).setEnabled(false);
+                }
+
                 popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
 
-                        switch (item.getItemId()){
-                            case R.id.Vmarks:
-                                viewMarks(p);
-                                break;
-                            case R.id.Gmarks:
-                                giveMarks(p);
-                                break;
-                            case R.id.takeAttendence:
-                                takeAttendence(p);
-                                break;
+                        if(item.getItemId() == R.id.deletepost){
+
+                            String path = "Classes/"+SchoolId+"/class/"+CurrentClass+"/Section/"+Section.get(position)+"/";
+                            DatabaseReference ref = FirebaseDatabase.getInstance().getReference(path);
+
+                            ref.removeValue()
+                                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task) {
+                                            if(task.isSuccessful()){
+                                                Toast.makeText(context, "Successfully deleted.", Toast.LENGTH_SHORT).show();
+                                            }
+                                        }
+                                    });
                         }
 
-
-                        Toast.makeText(context, "ASAS", Toast.LENGTH_SHORT).show();
                         return true;
                     }
                 });
 
                 popup.show();
+
                 return true;
             }
         });
+
     }
 
-    private void takeAttendence(int p){
-        Intent intent = new Intent(context, TakeAttendenceActivity.class);
-        System.out.println(Student.get(p));
-        intent.putExtra("stdNo",Integer.toString(Student.get(p)));
-        intent.putExtra("sectionNo",Section.get(p));
-        intent.putExtra("classNo",CurrentClass);
-        context.startActivity(intent);
-    }
-    private void viewMarks(int p){
-        Intent intent = new Intent(context, ViewStudentActivity.class);
-        System.out.println(Student.get(p));
-        intent.putExtra("stdNo",Integer.toString(Student.get(p)));
-        intent.putExtra("sectionNo",Section.get(p));
-        intent.putExtra("clsname",CurrentClass);
-        context.startActivity(intent);
-    }
-    private void giveMarks(int p){
-        Intent intent = new Intent(context, GiveMarksToStudent.class);
-        System.out.println(Student.get(p));
-        intent.putExtra("section",Section.get(p));
-        intent.putExtra("class",CurrentClass);
-        intent.putExtra("id","");
-        context.startActivity(intent);
-    }
     @Override
     public int getItemCount() {
         return Section.size();

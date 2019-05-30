@@ -1,12 +1,14 @@
 package com.example.rat.primeedu.Teacher;
 
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
+import android.text.InputType;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,14 +25,16 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.rat.primeedu.R;
+import com.google.android.gms.tasks.OnCanceledListener;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class GiveMarksToStudent extends AppCompatActivity implements View.OnClickListener {
 
-    Button subj,marksGiven;
+    ImageButton marksGiven;
     ImageButton back;
     int subj_number;
     TextView classNo;
@@ -38,6 +42,10 @@ public class GiveMarksToStudent extends AppCompatActivity implements View.OnClic
     EditText id,maximumMark,examName;
     CheckBox checkBox;
     private String url = "SchoolName/Class/";
+    String SchoolId;
+    CheckBox terms,ct;
+    ProgressDialog dialog;
+    String TotalStudentNo,SchoolName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,90 +61,57 @@ public class GiveMarksToStudent extends AppCompatActivity implements View.OnClic
     private void getDataFromIntent() {
         Class = getIntent().getStringExtra("class").toString();
         Section = getIntent().getStringExtra("section").toString();
-        StudentId = getIntent().getStringExtra("id").toString();
+//        StudentId = getIntent().getStringExtra("id").toString();
 
-
+        SchoolName = getIntent().getStringExtra("schoolName").toString();
+        TotalStudentNo = getIntent().getStringExtra("stdNo").toString();
         classNo.setText(Class+"("+Section+")");
-        id.setText(StudentId);
+        //id.setText(StudentId);
+
+        SchoolId = getIntent().getStringExtra("schoolId").toString();
+        TextView school = findViewById(R.id.school_name);
+        school.setText(SchoolName);
     }
 
     private void init() {
-
+        terms = (CheckBox)findViewById(R.id.terms);
+        terms.setOnClickListener(this);
+        ct = (CheckBox)findViewById(R.id.ct);
+        ct.setOnClickListener(this);
         examName = (EditText)findViewById(R.id.examName);
         maximumMark = (EditText)findViewById(R.id.maximumMark);
         id = (EditText)findViewById(R.id.id);
 
-        checkBox = (CheckBox)findViewById(R.id.checkbox);
+
 
         classNo = (TextView)findViewById(R.id.classNo);
 
-        subj = (Button) findViewById(R.id.subj);
-        subj.setOnClickListener(this);
 
-        marksGiven  = (Button)findViewById(R.id.marksGiven);
+        marksGiven  = (ImageButton)findViewById(R.id.marksGiven);
         marksGiven.setOnClickListener(this);
 
         back = (ImageButton)findViewById(R.id.back);
         back.setOnClickListener(this);
     }
 
-    private void openNumberPicker() {
-        RelativeLayout linearLayout = new RelativeLayout(this);
-        final NumberPicker aNumberPicker = new NumberPicker(this);
-        aNumberPicker.setMaxValue(50);
-        aNumberPicker.setMinValue(1);
 
-        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(50, 50);
-        RelativeLayout.LayoutParams numPicerParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
-        numPicerParams.addRule(RelativeLayout.CENTER_HORIZONTAL);
+    private void createView(){
 
-        linearLayout.setLayoutParams(params);
-        linearLayout.addView(aNumberPicker, numPicerParams);
-
-        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-        alertDialogBuilder.setTitle("Select the number");
-        alertDialogBuilder.setView(linearLayout);
-        alertDialogBuilder
-                .setCancelable(false)
-                .setPositiveButton("Ok",
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog,
-                                                int id) {
-                                subj_number = aNumberPicker.getValue();
-
-                                createView(aNumberPicker.getValue());
-                            }
-                        })
-                .setNegativeButton("Cancel",
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog,
-                                                int id) {
-                                dialog.cancel();
-                            }
-                        });
-        AlertDialog alertDialog = alertDialogBuilder.create();
-        alertDialog.show();
-    }
-    private void createView(int subjNumber){
-
-        System.out.println(subjNumber);
         TableLayout table = (TableLayout)findViewById(R.id.table);
         table.setStretchAllColumns(true);
-
-        for(int i = 0 ;i<subjNumber ;i++){
+        int studentNo = Integer.parseInt(TotalStudentNo);
+        for(int i = 1 ;i<=studentNo ;i++){
             TableRow tableRow = new TableRow(this);
-            tableRow.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.FILL_PARENT, TableRow.LayoutParams.WRAP_CONTENT));
+            tableRow.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT));
             table.addView(tableRow);
             LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             CardView rowView = (CardView) inflater.inflate(R.layout.marks, null);
+            TextView ids = (TextView)rowView.findViewById(R.id.ids);
+            ids.setText(Integer.toString(i));
             tableRow.addView(rowView);
         }
 
     }
-
-
-
-
 
     public void gotoTheMarkingPage(){
         check();
@@ -167,9 +142,25 @@ public class GiveMarksToStudent extends AppCompatActivity implements View.OnClic
         alertDialog.show();
     }
 
+    private void showLoading() {
+
+        dialog = new ProgressDialog(this);
+        dialog.setIndeterminate(true);
+        dialog.setCancelable(false);
+        dialog.setMessage("Please Wait ...");
+        dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        dialog.show();
+        dialog.show();
+    }
+
+
     private void check(){
+        if(!terms.isChecked() && !ct.isChecked() ){
+            Toast.makeText(this, "Please Enter Exam Type", Toast.LENGTH_SHORT).show();
+            return;
+        }
         if(id.getText().toString().equals("")){
-            Toast.makeText(this, "Please Enter Student Id", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Please Enter Subject", Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -184,90 +175,137 @@ public class GiveMarksToStudent extends AppCompatActivity implements View.OnClic
         }
         TableLayout table = (TableLayout)findViewById(R.id.table);
         for(int i = 0 ;i<table.getChildCount();i++){
-            TableRow row = (TableRow) table.getChildAt(i);
-            for(int j = 0; j<row.getChildCount() ;j++){
-                CardView cardView = (CardView)row.getChildAt(j);
-                EditText sub = (EditText)cardView.findViewById(R.id.sub);
-                EditText mark = (EditText)cardView.findViewById(R.id.marks);
+            final TableRow row = (TableRow) table.getChildAt(i);
 
-                if(mark.getText().equals("") || sub.getText().equals("")){
-                    Toast.makeText(this, "Some Textfield Remains Empty. Please Fill it.", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                if(Float.parseFloat(mark.getText().toString())> Float.parseFloat(maximumMark.getText().toString())){
-                    Toast.makeText(this, "Subject Marks is greater than maximum mark. Please Check", Toast.LENGTH_SHORT).show();
-                    return;
-                }
+            CardView cardView = (CardView)row.getChildAt(0);
+            EditText mark = (EditText)cardView.findViewById(R.id.marks);
+
+            if(mark.getText().toString().equals("")){
+                Toast.makeText(this, i+1 +"th field Remains Empty. Please Fill it.", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            if(Float.parseFloat(mark.getText().toString())> Float.parseFloat(maximumMark.getText().toString())){
+                Toast.makeText(this, i+1 + "th fields Subject Marks is greater than maximum mark. Please Check", Toast.LENGTH_SHORT).show();
+                return;
             }
         }
-        getDataFromTable();
+
+         getDataFromTable();
     }
     private void getDataFromTable() {
 
-        String studentId = id.getText().toString();
+        showLoading();
+        String SubjectName = id.getText().toString();
         String exam = examName.getText().toString();
         String nums = maximumMark.getText().toString();
 
 
-        String path = url+Class+"/Section/"+Section+"/"+studentId+"/Marks/"+exam;
+        String path = "";
+
 
         System.out.println(path);
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-//
-//        If needed wil add
-//        DatabaseReference databaseReference = database.getReference(path+"/Status");
-//
-//        if(checkBox.isChecked() == true){
-//            databaseReference.child("Status").setValue("P");
-//        }else{
-//            databaseReference.child("Status").setValue("A");
-//        }
 
-        TableLayout table = (TableLayout)findViewById(R.id.table);
+        final int[] col = {0};
+        final int[] rw = {0};
+        path = "Classes/"+SchoolId+"/class/"+Class+"/Section/"+Section+"/";
+        final TableLayout table = (TableLayout)findViewById(R.id.table);
         for(int i = 0 ;i<table.getChildCount();i++){
-            TableRow row = (TableRow) table.getChildAt(i);
-            for(int j = 0; j<row.getChildCount() ;j++){
-                CardView cardView = (CardView)row.getChildAt(j);
-                EditText sub = (EditText)cardView.findViewById(R.id.sub);
-                final EditText mark = (EditText)cardView.findViewById(R.id.marks);
+            final TableRow row = (TableRow) table.getChildAt(i);
 
-                final boolean[] check = {false};
-                DatabaseReference myref = database.getReference(path+"/Subject/"+sub.getText().toString()+"/");
-                myref.child("maxNumber").setValue(nums).addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        if(task.isSuccessful()){
-                            Toast.makeText(GiveMarksToStudent.this, "SuccessFully Entered", Toast.LENGTH_SHORT).show();
-                            check[0] = true;
-                            mark.setText("");
-                        }
-                        if(task == null){
-                            Toast.makeText(GiveMarksToStudent.this, "Please Check Internet Connection", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
-                if(mark.getText().equals("")){
+            CardView cardView = (CardView)row.getChildAt(0);
+            final EditText mark = (EditText)cardView.findViewById(R.id.marks);
 
-                }else{
-                    Toast.makeText(GiveMarksToStudent.this, "Please Check Internet Connection", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                myref.child("number").setValue(mark.getText().toString());
+            String Url = "";
+            if(terms.isChecked()){
+                Url = path+(i+1)+"/Marks/Terms/"+exam+"/"+SubjectName;
             }
+            else{
+                Url = path+(i+1)+"/Marks/Ct/"+exam+"/"+SubjectName;
+            }
+            DatabaseReference ref = FirebaseDatabase.getInstance().getReference(Url);
+            ref.child("maxNumber").setValue(nums);
+            final int finalI = i;
+            ref.child("number").setValue(mark.getText().toString())
+                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if(task.isSuccessful()){
+                                mark.setText("");
+                                if( finalI == table.getChildCount()-1){
+                                    dialog.dismiss();
+                                    openDialogBox();
+                                    id.setText("");
+                                }
+                            }else {
+                                dialog.dismiss();
+                                Toast.makeText(GiveMarksToStudent.this, "Something is wrong", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            dialog.dismiss();
+                            Toast.makeText(GiveMarksToStudent.this, "Something is wrong", Toast.LENGTH_SHORT).show();
+
+                        }
+                    })
+                    .addOnCanceledListener(new OnCanceledListener() {
+                        @Override
+                        public void onCanceled() {
+                            dialog.dismiss();
+                            Toast.makeText(GiveMarksToStudent.this, "Something is wrong", Toast.LENGTH_SHORT).show();
+
+                        }
+                    });
         }
-        id.setText("");
     }
 
     @Override
     public void onClick(View v) {
-        if(v.getId() == R.id.subj){
-            openNumberPicker();
-        }
         if(v.getId() == R.id.marksGiven){
             gotoTheMarkingPage();
         }
         if(v.getId() == R.id.back){
             backButton();
+        }
+        if(v.getId() == R.id.terms){
+            if(terms.isChecked()){
+                ct.setChecked(false);
+                ct.setEnabled(false);
+                examName.setInputType(InputType.TYPE_CLASS_NUMBER);
+                TableLayout table = (TableLayout)findViewById(R.id.table);
+                System.out.println(table.getChildCount());
+
+                if(table.getChildCount()==0){
+                    createView();
+                }
+
+            }
+            else{
+                ct.setEnabled(true);
+                examName.setInputType(InputType.TYPE_CLASS_TEXT);
+            }
+        }
+        if(v.getId() == R.id.ct){
+            if(ct.isChecked()){
+                terms.setChecked(false);
+                terms.setEnabled(false);
+                examName.setInputType(InputType.TYPE_CLASS_TEXT);
+
+                TableLayout table = (TableLayout)findViewById(R.id.table);
+                System.out.println(table.getChildCount());
+
+                if(table.getChildCount()==0){
+                    createView();
+                }
+            }
+            else{
+                terms.setEnabled(true);
+                examName.setInputType(InputType.TYPE_CLASS_TEXT);
+
+            }
         }
     }
 
@@ -278,5 +316,19 @@ public class GiveMarksToStudent extends AppCompatActivity implements View.OnClic
             return true;
         }
         return false;
+    }
+    private void openDialogBox() {
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+        alertDialogBuilder.setCancelable(false);
+        alertDialogBuilder.setMessage("Marks has been saved.");
+        alertDialogBuilder.setPositiveButton("ok",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface arg0, int arg1) {
+
+                    }
+                });
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
     }
 }

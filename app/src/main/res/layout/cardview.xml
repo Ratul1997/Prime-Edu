@@ -1,38 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView
+<LinearLayout android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="70dp"
-    android:orientation="vertical"
-    android:gravity="center"
-    android:background="#f2eaac"
-    android:id="@+id/lin"
-    android:layout_marginBottom="5dp">
-
-    <LinearLayout
+    android:orientation="vertical">
+    <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="90dp"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_marginTop="10dp"
         android:orientation="vertical"
-        android:gravity="center">
+        android:gravity="center"
+        android:background="#f2eaac"
+        android:id="@+id/lin"
+        android:layout_marginBottom="5dp">
 
-        <TextView
-            android:id="@+id/txtId"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="newtext"
-            android:textSize="25sp"
-            android:textColor="#000000"
-            android:gravity="center"
-            />
-        <TextView
-            android:id="@+id/txtId2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="newtext"
-            android:textColor="#000000"
-            android:textSize="18sp" />
+            android:layout_height="match_parent"
+            android:background="@drawable/c4"
+            android:orientation="horizontal">
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:orientation="vertical"
+                tools:ignore="Suspicious0dp">
 
-    </LinearLayout>
+                <TextView
+                    android:id="@+id/txtId"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center|start"
+                    android:text="newtext"
+                    android:textStyle="bold"
+                    android:textColor="@color/texts"
+                    android:textSize="25sp" />
 
-</android.support.v7.widget.CardView>
+                <TextView
+                    android:id="@+id/txtId2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:gravity="center|start"
+                    android:text="newtext"
+                    android:textColor="@color/texts"
+                    android:textSize="18sp" />
+            </LinearLayout>
+            <ImageButton
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:layout_weight=".3"
+                android:scaleType="fitCenter"
+                android:background="@null"
+                android:src="@drawable/c2"
+                />
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_margin="5dp"
+        android:id="@+id/recyclerview"
+        android:layout_height="wrap_content"
+        ></android.support.v7.widget.RecyclerView>
+</LinearLayout>

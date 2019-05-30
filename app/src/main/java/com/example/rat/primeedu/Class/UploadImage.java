@@ -1,7 +1,5 @@
 package com.example.rat.primeedu.Class;
 
-import com.example.rat.primeedu.UploadPicture;
-
 public class UploadImage {
     private String  imagename;
     private String imageurl;

@@ -2,82 +2,59 @@ package com.example.rat.primeedu.Class;
 
 public class StudentDetails {
 
-    private String studentname;
-    private String studentfathername;
-    private String studentmothername;
-    private String studentfatheroccupation;
-    private String studentmotheroccupation;
-    private String studentfathercontactno;
-    private String studentmothercontactno;
+    private String studentfname,studenlname;
     private String studentaddress;
+    private String studentprofilepicture;
+    private String gender,contactnumber;
+    private GurdianDetails gurdianDetails;
+    private FatherDetails fatherDetails;
+    private MotherDetails motherDetails;
 
-    public StudentDetails(String studentname, String studentfathername, String studentmothername, String studentfatheroccupation, String studentmotheroccupation, String studentfathercontactno, String studentmothercontactno, String studentaddress) {
-        this.studentname = studentname;
-        this.studentfathername = studentfathername;
-        this.studentmothername = studentmothername;
-        this.studentfatheroccupation = studentfatheroccupation;
-        this.studentmotheroccupation = studentmotheroccupation;
-        this.studentfathercontactno = studentfathercontactno;
-        this.studentmothercontactno = studentmothercontactno;
+    public StudentDetails(String studentfname, String studenlname, String studentaddress, String studentprofilepicture, String gender, String contactnumber, GurdianDetails gurdianDetails, FatherDetails fatherDetails, MotherDetails motherDetails) {
+        this.studentfname = studentfname;
+        this.studenlname = studenlname;
         this.studentaddress = studentaddress;
+        this.studentprofilepicture = studentprofilepicture;
+        this.gender = gender;
+        this.contactnumber = contactnumber;
+        this.gurdianDetails = gurdianDetails;
+        this.fatherDetails = fatherDetails;
+        this.motherDetails = motherDetails;
     }
 
-    public StudentDetails(){}
-
-    public String getStudentname() {
-        return studentname;
+    public StudentDetails() {
     }
 
-    public void setStudentname(String studentname) {
-        this.studentname = studentname;
+    public String getGender() {
+        return gender;
     }
 
-    public String getStudentfathername() {
-        return studentfathername;
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 
-    public void setStudentfathername(String studentfathername) {
-        this.studentfathername = studentfathername;
+    public String getContactnumber() {
+        return contactnumber;
     }
 
-    public String getStudentmothername() {
-        return studentmothername;
+    public void setContactnumber(String contactnumber) {
+        this.contactnumber = contactnumber;
     }
 
-    public void setStudentmothername(String studentmothername) {
-        this.studentmothername = studentmothername;
+    public String getStudentfname() {
+        return studentfname;
     }
 
-    public String getStudentfatheroccupation() {
-        return studentfatheroccupation;
+    public void setStudentfname(String studentfname) {
+        this.studentfname = studentfname;
     }
 
-    public void setStudentfatheroccupation(String studentfatheroccupation) {
-        this.studentfatheroccupation = studentfatheroccupation;
+    public String getStudenlname() {
+        return studenlname;
     }
 
-    public String getStudentmotheroccupation() {
-        return studentmotheroccupation;
-    }
-
-    public void setStudentmotheroccupation(String studentmotheroccupation) {
-        this.studentmotheroccupation = studentmotheroccupation;
-    }
-
-    public String getStudentfathercontactno() {
-        return studentfathercontactno;
-    }
-
-    public void setStudentfathercontactno(String studentfathercontactno) {
-        this.studentfathercontactno = studentfathercontactno;
-    }
-
-    public String getStudentmothercontactno() {
-        return studentmothercontactno;
-    }
-
-    public void setStudentmothercontactno(String studentmothercontactno) {
-        this.studentmothercontactno = studentmothercontactno;
+    public void setStudenlname(String studenlname) {
+        this.studenlname = studenlname;
     }
 
     public String getStudentaddress() {
@@ -87,4 +64,38 @@ public class StudentDetails {
     public void setStudentaddress(String studentaddress) {
         this.studentaddress = studentaddress;
     }
+
+    public String getStudentprofilepicture() {
+        return studentprofilepicture;
+    }
+
+    public void setStudentprofilepicture(String studentprofilepicture) {
+        this.studentprofilepicture = studentprofilepicture;
+    }
+
+    public GurdianDetails getGurdianDetails() {
+        return gurdianDetails;
+    }
+
+    public void setGurdianDetails(GurdianDetails gurdianDetails) {
+        this.gurdianDetails = gurdianDetails;
+    }
+
+    public FatherDetails getFatherDetails() {
+        return fatherDetails;
+    }
+
+    public void setFatherDetails(FatherDetails fatherDetails) {
+        this.fatherDetails = fatherDetails;
+    }
+
+    public MotherDetails getMotherDetails() {
+        return motherDetails;
+    }
+
+    public void setMotherDetails(MotherDetails motherDetails) {
+        this.motherDetails = motherDetails;
+    }
 }
+
+

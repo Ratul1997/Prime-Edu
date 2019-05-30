@@ -12,7 +12,7 @@
         android:layout_width="130dp"
         android:layout_height="wrap_content"
         android:layout_weight="50"
-        android:fontFamily="@font/cherry_cream_soda"
+
         android:gravity="center"
         android:padding="10dp"
         android:text="Subject"
@@ -26,10 +26,9 @@
         android:layout_height="wrap_content"
         android:layout_marginRight="15dp"
         android:layout_weight="50"
-        android:fontFamily="@font/annie_use_your_telescope"
         android:gravity="center"
         android:padding="10dp"
         android:text="63.5/100"
-        android:textSize="30sp" />
+        android:textSize="20sp" />
 
 </LinearLayout>

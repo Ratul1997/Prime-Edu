@@ -1,6 +1,11 @@
 package com.example.rat.primeedu.Class;
 
-public class TeacherDetails {
+import android.content.pm.PackageManager;
+import android.support.annotation.NonNull;
+
+import java.io.Serializable;
+
+public class TeacherDetails implements Serializable {
     private String teachername;
     private String teachersubject;
     private String teacherstatus;
@@ -8,8 +13,10 @@ public class TeacherDetails {
     private String teachercurrentschool;
     private String teacheremail;
     private String teacheraddress;
+    private String teacherimage;
+    private String token;
 
-    public TeacherDetails(String teachername, String teachersubject, String teacherstatus, String teachercontactno, String teachercurrentschool, String teacheremail, String teacheraddress) {
+    public TeacherDetails(String teachername, String teachersubject, String teacherstatus, String teachercontactno, String teachercurrentschool, String teacheremail, String teacheraddress, String teacherimage,String token) {
         this.teachername = teachername;
         this.teachersubject = teachersubject;
         this.teacherstatus = teacherstatus;
@@ -17,10 +24,27 @@ public class TeacherDetails {
         this.teachercurrentschool = teachercurrentschool;
         this.teacheremail = teacheremail;
         this.teacheraddress = teacheraddress;
+        this.teacherimage = teacherimage;
+        this.token = token;
     }
-
     public TeacherDetails(){
 
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
+
+    public String getTeacherimage() {
+        return teacherimage;
+    }
+
+    public void setTeacherimage(String teacherimage) {
+        this.teacherimage = teacherimage;
     }
 
     public String getTeachername() {
@@ -78,4 +102,5 @@ public class TeacherDetails {
     public void setTeacheraddress(String teacheraddress) {
         this.teacheraddress = teacheraddress;
     }
+
 }

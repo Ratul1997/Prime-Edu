@@ -1,6 +1,7 @@
 package com.example.rat.primeedu.Teacher;
 
 import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.graphics.drawable.ColorDrawable;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -33,12 +34,17 @@ public class ClassActivity extends AppCompatActivity implements View.OnClickList
     List<Integer> Student = new ArrayList<Integer>();
     SectionAdapter adapter;
     ImageButton back;
-    Dialog dialog;
+    ProgressDialog dialog;
+    String SchoolName;
+    String SchoolId,type;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_class);
+        Window window = getWindow();
+        window.setStatusBarColor(getResources().getColor(R.color.actionbar));
+
         init();
         showLoading();
 
@@ -47,28 +53,31 @@ public class ClassActivity extends AppCompatActivity implements View.OnClickList
 
     private void showLoading() {
 
-        dialog = new Dialog(this);
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
-        dialog.setContentView(R.layout.loadingprogressbar);
+        dialog = new ProgressDialog(this);
+        dialog.setIndeterminate(true);
+        dialog.setCancelable(false);
+        dialog.setMessage("Please Wait ...");
+        dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        dialog.show();
         dialog.show();
     }
 
     private void getSections() {
         recyclerView = (RecyclerView)findViewById(R.id.recyclerView);
 
+
         String clsss = getIntent().getStringExtra("clsname");
         classNo.setText(clsss);
         System.out.println(clsss);
 
-        adapter = new SectionAdapter(Secion,Student,this,clsss);
+        adapter = new SectionAdapter(Secion,Student,this,clsss,type,SchoolId,SchoolName);
         final LinearLayoutManager mLayoutManager= new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, true);
         mLayoutManager.setReverseLayout(true);
         mLayoutManager.setStackFromEnd(true);
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setAdapter(adapter);
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference(classUrl+"/"+classNo.getText()+"/Section/");
+        DatabaseReference myRef = database.getReference("Classes/"+SchoolId+"/class/"+classNo.getText()+"/Section/");
 
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -99,8 +108,9 @@ public class ClassActivity extends AppCompatActivity implements View.OnClickList
 
         back = (ImageButton)findViewById(R.id.back);
         back.setOnClickListener(this);
-
-
+        SchoolId = getIntent().getStringExtra("id").toString();
+        type = getIntent().getStringExtra("type").toString();
+        SchoolName = getIntent().getStringExtra("schoolname").toString();
     }
 
     @Override

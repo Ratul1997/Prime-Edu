@@ -10,11 +10,20 @@
         android:layout_width="130dp"
         android:layout_height="wrap_content"
         android:textSize="18dp"
-        android:layout_weight="50"
+        android:layout_weight="30"
         android:id="@+id/examNames"
         android:padding="10dp"
         android:gravity="center"
         android:text="Exam Name"/>
+
+    <ImageButton
+        android:layout_width="60dp"
+        android:layout_height="30dp "
+        android:scaleType="fitCenter"
+        android:id="@+id/download"
+        android:layout_weight="20"
+        android:background="@drawable/pdf1"
+        />
     <Button
         android:layout_width="50dp"
         android:layout_height="wrap_content"

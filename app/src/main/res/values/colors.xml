@@ -6,6 +6,8 @@
     <color name="bgBottomNavigation">#fe485a</color>
     <color name="texTcolor">#000</color>
     <color name="texTSelctedColor">#fff</color>
+    <color name="texts">#2F7FCA</color>
+    <color name="actionbar">#433A67</color>
 </resources>
     <!--#297FCA-->
 <!--#6baae1-->

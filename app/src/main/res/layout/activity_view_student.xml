@@ -5,31 +5,123 @@
     android:background="#F7FBFD"
     android:orientation="vertical">
 
+
     <LinearLayout
+
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center|start"
-        android:gravity="center|start"
-        android:orientation="horizontal"
-        android:background="@color/colorAccent">
+        android:layout_height="0dp"
+        android:layout_weight=".5"
+        android:background="@drawable/t10"
+        android:orientation="vertical">
 
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="35dp"
-            android:background="@null"
-            android:layout_weight="10"
-            android:src="@drawable/ic_action_name"
-            android:id="@+id/back"/>
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_weight="50"
-            android:paddingLeft="25dp"
-            android:gravity="start|center">
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight=".2"
+            android:background="@drawable/t10"
+            android:orientation="horizontal">
 
+            <ImageButton
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:src="@drawable/ic_arrow_left"
+                android:layout_gravity="center"
+                android:background="@null"
+                android:layout_marginLeft="2dp"
+                android:scaleType="fitCenter"
+                android:autoSizeMaxTextSize="100sp"
+                android:autoSizeMinTextSize="12sp"
+                android:autoSizeStepGranularity="2sp"
+                android:autoSizeTextType="uniform"
+                android:layout_weight=".15"
+                android:id="@+id/back"/>
+
+            <TextView
+                android:id="@+id/school_name"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_weight="1"
+                android:autoSizeMaxTextSize="100sp"
+                android:autoSizeMinTextSize="12sp"
+                android:autoSizeStepGranularity="2sp"
+                android:autoSizeTextType="uniform"
+                android:fontFamily="@font/montserrat"
+                android:gravity="center|start"
+                android:padding="5dp"
+                android:layout_gravity="center"
+                android:textSize="21dp"
+                android:paddingLeft="5dp"
+                android:text="School Name"
+                android:textColor="#ffffff" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            android:layout_margin="5dp"
+            android:layout_weight=".6">
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight=".8"
+                android:layout_marginLeft="15dp"
+                android:layout_marginBottom="10dp"
+                android:src="@drawable/v1"/>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginRight="15dp"
+                android:layout_weight="1.4"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:text="VIEW"
+                    android:textSize="30dp"
+                    android:autoSizeMaxTextSize="100sp"
+                    android:autoSizeMinTextSize="12sp"
+                    android:autoSizeStepGranularity="2sp"
+                    android:autoSizeTextType="uniform"
+                    android:textColor="#FFF"
+                    android:layout_weight="1.5"
+                    android:fontFamily="@font/montserrat"
+                    android:layout_gravity="end"
+                    android:gravity="end"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:text="Students"
+                    android:layout_weight="1"
+                    android:textSize="25dp"
+                    android:autoSizeMaxTextSize="100sp"
+                    android:autoSizeMinTextSize="12sp"
+                    android:autoSizeStepGranularity="2sp"
+                    android:autoSizeTextType="uniform"
+                    android:layout_marginBottom="20dp"
+                    android:textColor="#FFF"
+                    android:fontFamily="@font/montserrat"
+                    android:layout_gravity="end"
+                    android:gravity="end"/>
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginBottom="5dp"
+            android:orientation="vertical"
+            android:layout_weight=".5"
+            android:gravity="center">
             <TextView
                 android:id="@+id/className"
                 android:layout_width="wrap_content"
@@ -47,12 +139,7 @@
                 android:textColor="@color/common_google_signin_btn_text_dark_default"
                 android:textSize="20dp"
                 android:textStyle="bold" />
-
         </LinearLayout>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="40"/>
     </LinearLayout>
 
     <LinearLayout

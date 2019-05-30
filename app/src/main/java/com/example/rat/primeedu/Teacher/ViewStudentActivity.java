@@ -32,8 +32,9 @@ public class ViewStudentActivity extends AppCompatActivity implements View.OnCli
     private int studentNo ;
     final private String classUrl = "SchoolName/Class/";
     TextView className,sectionName;
-    private String Currentclass,CurrentSection;
-    String CurrentDate = "";
+    String SchoolId;
+    private String Currentclass,CurrentSection,type;
+    String CurrentDate = "",SchoolName;
     ImageButton back;
 
     @Override
@@ -41,14 +42,19 @@ public class ViewStudentActivity extends AppCompatActivity implements View.OnCli
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_student);
         Window window = getWindow();
-        window.setStatusBarColor(getResources().getColor(R.color.colorAccent));
+        window.setStatusBarColor(getResources().getColor(R.color.actionbar));
 
         getIntentDatas();
         init();
         populateButton();
     }
     private void getIntentDatas(){
+        type = getIntent().getStringExtra("type").toString();
+        System.out.println(type);
+
+        SchoolName = getIntent().getStringExtra("schoolName").toString();
         Currentclass = getIntent().getStringExtra("clsname").toString();
+        SchoolId = getIntent().getStringExtra("schoolId").toString();
         CurrentSection = getIntent().getStringExtra("sectionNo").toString();
     }
     private void init(){
@@ -106,6 +112,17 @@ public class ViewStudentActivity extends AppCompatActivity implements View.OnCli
                         final int p = finalCountt1;
 
                         popup.getMenuInflater().inflate(R.menu.student,popup.getMenu());
+
+                        if(type.equals("3")){
+                            System.out.println("Yes");
+                            popup.getMenu().findItem(R.id.giveMarks).setVisible(false);
+                            popup.getMenu().findItem(R.id.giveMarks).setEnabled(false);
+                        }
+                        if(type.equals("2")){
+
+                            popup.getMenu().findItem(R.id.giveMarks).setVisible(false);
+                            popup.getMenu().findItem(R.id.giveMarks).setEnabled(false);
+                        }
                         popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                             @Override
                             public boolean onMenuItemClick(MenuItem item) {
@@ -147,15 +164,12 @@ public class ViewStudentActivity extends AppCompatActivity implements View.OnCli
         intent.putExtra("section",CurrentSection);
         intent.putExtra("class",Currentclass);
         intent.putExtra("id",Integer.toString(p));
+        intent.putExtra("schoolId",SchoolId);
+        intent.putExtra("schoolName",SchoolName);
         startActivity(intent);
     }
     private void giveMarks(int p){
-        Intent intent = new Intent(this, GiveMarksToStudent.class);
-        System.out.println(sectionName.getText().toString());
-        intent.putExtra("section",CurrentSection);
-        intent.putExtra("class",Currentclass);
-        intent.putExtra("id",Integer.toString(p));
-        startActivity(intent);
+
     }
 
     private String rollNumber(int count){

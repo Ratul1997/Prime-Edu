@@ -1,29 +1,242 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/container"
+<LinearLayout xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.rat.primeedu.Teacher.TeacherActivity">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
 
-    <FrameLayout
-        android:id="@+id/frame_container"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+        android:layout_weight=".4"
+        android:layout_height="0dp"
+        android:layout_gravity="center"
+        android:background="@drawable/t10"
+        android:gravity="center|start"
+        android:orientation="horizontal">
 
-    <android.support.design.widget.BottomNavigationView
-        android:id="@+id/navigation"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:background="?android:attr/windowBackground"
-        app:itemBackground="@color/colorPrimaryDark"
-        android:foreground="?attr/selectableItemBackground"
-        app:itemIconTint="@drawable/selector_bottombar_item"
-        app:itemTextColor="@drawable/selector_bottombar_item"
-        app:elevation="18dp"
-        app:menu="@menu/navigation" />
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_marginLeft="10dp"
+            android:orientation="vertical"
+            tools:ignore="Suspicious0dp">
 
-</android.support.design.widget.CoordinatorLayout>
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/profilePic"
+                android:layout_width="80dp"
+                android:layout_marginTop="20dp"
+                android:layout_height="0dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="5dp"
+                android:layout_weight=".2"
+                android:src="@drawable/t9" />
+
+
+            <TextView
+                android:id="@+id/nameOfTeacher"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="5dp"
+                android:layout_weight=".02"
+                android:autoSizeMaxTextSize="100sp"
+                android:autoSizeMinTextSize="12sp"
+                android:autoSizeStepGranularity="2sp"
+                android:autoSizeTextType="uniform"
+                android:fontFamily="@font/montserrat"
+                android:text="Teacher Name"
+                android:textColor="@color/cast_expanded_controller_text_color"
+                android:textSize="18sp" />
+
+            <TextView
+
+                android:id="@+id/idOfTeacher"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="5dp"
+                android:layout_weight=".02"
+                android:autoSizeMaxTextSize="100sp"
+                android:autoSizeMinTextSize="12sp"
+                android:autoSizeStepGranularity="2sp"
+                android:autoSizeTextType="uniform"
+                android:fontFamily="@font/montserrat"
+                android:text="Teacher Id"
+                android:textColor="@color/cast_expanded_controller_text_color"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:layout_marginTop="5dp"
+            tools:ignore="Suspicious0dp">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:src="@drawable/t1"
+                android:layout_weight="1"/>
+            <ImageButton
+                android:id="@+id/options"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight=".2"
+                android:layout_gravity="end"
+                android:layout_marginBottom="10dp"
+                android:layout_marginRight="15dp"
+                android:background="@null"
+                android:src="@drawable/ic_action_down" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <ScrollView android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        xmlns:android="http://schemas.android.com/apk/res/android" >
+
+        <GridLayout
+            android:rowCount="2"
+            android:columnCount="2"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="120dp"
+                android:layout_height="150dp"
+                android:layout_gravity="center"
+                android:id="@+id/viewClass"
+                android:gravity="center"
+                android:background="@drawable/bottomright"
+                android:orientation="vertical"
+                >
+                <ImageView
+                    android:layout_marginTop="10dp"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/t8"
+                    />
+                <TextView
+                    android:layout_marginTop="3dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="CLASSES"
+                    android:fontFamily="@font/montserrat"
+                    android:layout_marginBottom="10dp"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="120dp"
+                android:layout_height="150dp"
+                android:layout_gravity="center"
+                android:id="@+id/viewNotice"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:background="@drawable/bottom"
+                >
+
+                <LinearLayout
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:background="@drawable/img">
+                    <ImageView
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:src="@drawable/gn1"
+                        android:layout_gravity="center"
+                        android:scaleType="fitCenter"/>
+                </LinearLayout>
+                <TextView
+                    android:layout_marginTop="3dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="GIVE NOTICE"
+                    android:fontFamily="@font/montserrat"
+                    android:layout_marginBottom="10dp"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="120dp"
+                android:layout_height="150dp"
+                android:layout_gravity="center"
+                android:background="@drawable/right"
+                android:gravity="center"
+                android:id="@+id/viewPayments"
+                android:orientation="vertical"
+                >
+                <ImageView
+                    android:layout_marginTop="10dp"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/t6"
+                    />
+                <TextView
+                    android:layout_marginTop="3dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="PAYMENT"
+
+                    android:fontFamily="@font/montserrat"
+                    android:layout_marginBottom="10dp"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/about"
+                android:layout_width="120dp"
+                android:layout_height="150dp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_marginTop="10dp"
+                    android:src="@drawable/t5" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="3dp"
+                    android:fontFamily="@font/montserrat"
+                    android:gravity="center"
+                    android:text="ABOUT" />
+            </LinearLayout>
+
+        </GridLayout>
+    </ScrollView>
+
+    <ImageButton
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:scaleType="fitCenter"
+        android:background="@null"
+        android:id="@+id/noticeboard"
+        android:layout_gravity="center"
+        android:layout_marginBottom="20dp"
+
+        android:src="@drawable/t4"/>
+</LinearLayout>

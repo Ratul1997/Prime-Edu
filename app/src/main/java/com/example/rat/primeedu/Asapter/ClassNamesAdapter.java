@@ -20,10 +20,13 @@ import java.util.List;
 public class ClassNamesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     List<ClassName> listClassName = new ArrayList<>();
     Context context;
-
-    public ClassNamesAdapter(List<ClassName> listClassName, Context context) {
+    String SchoolId;
+    String SchoolName;
+    public ClassNamesAdapter(List<ClassName> listClassName, Context context, String schoolId,String SchoolName) {
         this.listClassName = listClassName;
         this.context = context;
+        SchoolId = schoolId;
+        this.SchoolName = SchoolName;
     }
 
     @NonNull
@@ -49,6 +52,9 @@ public class ClassNamesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
                 Intent intent = new Intent(context,ClassActivity.class);
 
                 intent.putExtra("clsname",currentItem.getClasNaMEs());
+                intent.putExtra("type","3");
+                intent.putExtra("id",SchoolId);
+                intent.putExtra("schoolname",SchoolName);
                 context.startActivity(intent);
             }
         });

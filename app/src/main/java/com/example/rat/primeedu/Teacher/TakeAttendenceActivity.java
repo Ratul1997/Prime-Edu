@@ -2,6 +2,7 @@ package com.example.rat.primeedu.Teacher;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Color;
@@ -11,6 +12,7 @@ import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.ImageButton;
@@ -38,38 +40,67 @@ public class TakeAttendenceActivity extends AppCompatActivity implements View.On
     private boolean present[];
     final private String classUrl = "SchoolName/Class/";
     TextView date,className,sectionName;
-    Button save;
-    private String Currentclass = "3",CurrentSection = "A";
+    String SchoolName;
+    ImageButton save;
+    private String Currentclass ,CurrentSection ;
     String CurrentDate = "";
     ImageButton back;
+    private String SchoolId ;
+    ProgressDialog dialog;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_take_attendence);
+
+        Window window = getWindow();
+        window.setStatusBarColor(getResources().getColor(R.color.actionbar));
+
+
+        getIntentData();
         init();
         populateButton();
     }
+
+    private void getIntentData() {
+        SchoolId = getIntent().getStringExtra("schoolId").toString();
+        Currentclass = getIntent().getStringExtra("classNo").toString();
+        CurrentSection = getIntent().getStringExtra("sectionNo").toString();
+        SchoolName = getIntent().getStringExtra("schoolName").toString();
+    }
+
+    private void showLoading() {
+
+        dialog = new ProgressDialog(this);
+        dialog.setIndeterminate(true);
+        dialog.setCancelable(false);
+        dialog.setMessage("Please Wait ...");
+        dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        dialog.show();
+        dialog.show();
+    }
+
+
     private void init(){
 
-
+        TextView scl = findViewById(R.id.school_name);
+        scl.setText(SchoolName);
         date = (TextView)findViewById(R.id.date);
         date.setOnClickListener(this);
 
-        save = (Button)findViewById(R.id.save);
+        save = (ImageButton)findViewById(R.id.save);
         save.setOnClickListener(this);
 
         back = (ImageButton)findViewById(R.id.back);
         back.setOnClickListener(this);
 
 
-        //Currentclass = getIntent().getStringExtra("classNo").toString();
-        //CurrentSection = getIntent().getStringExtra("sectionNo").toString();
-        className = (TextView)findViewById(R.id.className);
-        className.setText("Class: "+Currentclass);
+//        className = (TextView)findViewById(R.id.className);
+//        className.setText("Class: "+Currentclass);
 
-        sectionName = (TextView)findViewById(R.id.sectionName);
-        sectionName.setText("Section: "+CurrentSection);
+//        sectionName = (TextView)findViewById(R.id.sectionName);
+//        sectionName.setText("Section: "+CurrentSection);
 
     }
 
@@ -77,10 +108,9 @@ public class TakeAttendenceActivity extends AppCompatActivity implements View.On
         TableLayout table = (TableLayout)findViewById(R.id.table);
         table.setStretchAllColumns(true);
 
-        //String no = getIntent().getStringExtra("stdNo").toString();
+        String no = getIntent().getStringExtra("stdNo").toString();
 
-        //studentNo = Integer.parseInt(no);
-        studentNo = 63;
+        studentNo = Integer.parseInt(no);
         int e = studentNo/col;
         if(e*col == studentNo)row = e;
         else row = e+1;
@@ -110,12 +140,12 @@ public class TakeAttendenceActivity extends AppCompatActivity implements View.On
                     public void onClick(View v) {
                         if(present[finalCountt]){
                             roll.setTextColor(Color.RED);
-                            presentId.setImageResource(R.drawable.absent);
+                            presentId.setImageResource(R.drawable.at7);
                             present[finalCountt] = false;
                         }
                         else if(!present[finalCountt]){
-                            roll.setTextColor(Color.BLACK);
-                            presentId.setImageResource(R.drawable.present);
+                            roll.setTextColor(Color.parseColor("#2F7FCA"));
+                            presentId.setImageResource(R.drawable.at6);
                             present[finalCountt] = true;
                         }
                     }
@@ -180,55 +210,62 @@ public class TakeAttendenceActivity extends AppCompatActivity implements View.On
     }
 
     private void saveAttendence() {
+        showLoading();
         System.out.println(Currentclass+" "+CurrentSection);
         //String path = classUrl+Currentclass+"/Section/"+CurrentSection;
-        String path = "Classes/24sOoni50iRw2tDa2Du0mhmswrG3/class/"+Currentclass+"/Section/A";
+        String path = "Classes/"+SchoolId+"/class/"+Currentclass+"/Section/"+CurrentSection;
 
         System.out.println(path);
+
+        final int[] flag = {1};
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         for(int i = 1 ;i<=studentNo; i++){
-//            System.out.println(path+"/"+i+"/Attendence/");
 
 
             DatabaseReference myRef = database.getReference(path+"/"+i+"/Attendence/");
 
-            if(present[i]){myRef.child(CurrentDate).setValue("P");}
-            else{
-                myRef.child(CurrentDate).setValue("A");
+            if(present[i]){
+                final int finalI = i;
+                myRef.child(CurrentDate).setValue("P")
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if(task.isSuccessful()){
+                            if(finalI ==studentNo){
+                                dialog.dismiss();
+                                openDialogBox();
+                            }
+                            else{
+                                flag[0] = 0;
+                            }
+                        }
+                    }
+                })
+                ;
             }
-            final int[] flag = {1};
-//            if(present[i]){myRef.child(CurrentDate).setValue("P").addOnCompleteListener(new OnCompleteListener<Void>() {
-//                @Override
-//                public void onComplete(@NonNull Task<Void> task) {
-//                    if(task.isSuccessful()){
-//                        Toast.makeText(TakeAttendenceActivity.this, "SuccessFully Entered", Toast.LENGTH_SHORT).show();
-//                        flag[0] = 0;
-//                    }
-//                    else{
-//                        Toast.makeText(TakeAttendenceActivity.this, "Please Check Internet Connection", Toast.LENGTH_SHORT).show();
-//                        return;
-//                    }
-//                }
-//            });}
-//            else{
-//                myRef.child(CurrentDate).setValue("A").addOnCompleteListener(new OnCompleteListener<Void>() {
-//                    @Override
-//                    public void onComplete(@NonNull Task<Void> task) {
-//                        if(task.isSuccessful()){
-//                            Toast.makeText(TakeAttendenceActivity.this, "SuccessFully Entered", Toast.LENGTH_SHORT).show();
-//                            flag[0]=0;
-//                        }
-//                        else{
-//                            Toast.makeText(TakeAttendenceActivity.this, "Please Check Internet Connection", Toast.LENGTH_SHORT).show();
-//                            return;
-//                        }
-//                    }
-//                });
-//            }
-//            if(flag[0]==1){
-//                Toast.makeText(TakeAttendenceActivity.this, "Please Check Internet Connection", Toast.LENGTH_SHORT).show();
-//                return;
-//            }
+            else{
+                final int finalI1 = i;
+                myRef.child(CurrentDate).setValue("A")
+                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if(task.isSuccessful()){
+                                    if(finalI1 ==studentNo){
+                                        dialog.dismiss();
+                                        openDialogBox();
+                                    }
+                                }
+                                else{
+                                    flag[0] = 0;
+                                }
+                            }
+                        })
+                ;
+            }
+
+            if(flag[0] == 0){
+                return;
+            }
         }
 
     }
@@ -260,5 +297,19 @@ public class TakeAttendenceActivity extends AppCompatActivity implements View.On
             return true;
         }
         return false;
+    }
+    private void openDialogBox() {
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+        alertDialogBuilder.setCancelable(false);
+        alertDialogBuilder.setMessage("Attendance has been saved.");
+        alertDialogBuilder.setPositiveButton("ok",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface arg0, int arg1) {
+
+                    }
+                });
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
     }
 }

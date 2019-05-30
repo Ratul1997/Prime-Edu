@@ -1,79 +1,230 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_gravity="center"
     android:gravity="center"
-    xmlns:android="http://schemas.android.com/apk/res/android" >
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@drawable/t10"
+        android:orientation="vertical"
+        android:layout_weight=".5"
         >
+
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="15dp"
-            android:id="@+id/lGM"
-            android:orientation="vertical">
-            <ImageButton
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:src="@drawable/mark"
-                android:scaleType="fitXY"
-                android:background="@null"
-                android:id="@+id/gMarks"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Give Marks"
-                android:gravity="center"
-                android:layout_gravity="center"
-                />
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="15dp"
-            android:id="@+id/lVs"
-            android:orientation="vertical">
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight=".15"
+            android:background="@drawable/t10"
+            android:orientation="horizontal">
 
             <ImageButton
-                android:id="@+id/vStudent"
-                android:layout_width="100dp"
-                android:scaleType="fitXY"
-                android:layout_height="100dp"
-                android:background="@null"
-                android:src="@drawable/profile" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="View Student"
-                android:gravity="center"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:src="@drawable/ic_arrow_left"
                 android:layout_gravity="center"
-                />
+                android:background="@null"
+                android:layout_marginLeft="2dp"
+                android:scaleType="fitCenter"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_weight=".15"
+                android:id="@+id/back"/>
+
+            <TextView
+                android:id="@+id/school_name"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_weight="1"
+                android:autoSizeMaxTextSize="100sp"
+                android:autoSizeMinTextSize="12sp"
+                android:autoSizeStepGranularity="2sp"
+                android:autoSizeTextType="uniform"
+                android:fontFamily="@font/montserrat"
+                android:gravity="center|start"
+                android:padding="5dp"
+                android:layout_gravity="center"
+                android:textSize="21dp"
+                android:paddingLeft="5dp"
+                android:text="School Name"
+                android:textColor="#ffffff" />
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight=".4"
+            >
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_marginLeft="20dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight=".6"
+                    android:textColor="#FFFF"
+                    android:text="Class: 10"
+                    android:id="@+id/cls"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/montserrat"
+                    android:textSize="35dp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:textColor="#FFFF"
+                    android:id="@+id/sec"
+                    android:text="SECTION: A"
+                    android:fontFamily="@font/montserrat"
+                    android:textSize="25dp"
+                    android:layout_marginBottom="15dp"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_marginBottom="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight=".5"
+                    android:text="TOTAL"
+                    android:textSize="20dp"
+                    android:fontFamily="@font/montserrat"
+                    android:layout_gravity="end"
+                    android:gravity="end"
+                    android:textColor="#FFFF"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1.6"
+                    android:text="49"
+                    android:id="@+id/studentNumber"
+                    android:textSize="60dp"
+                    android:fontFamily="@font/montserrat"
+                    android:layout_gravity="end"
+                    android:gravity="end"
+                    android:textStyle="bold"
+                    android:textColor="#FFFF"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight=".5"
+                    android:text="STUDENTS"
+                    android:layout_marginBottom="10dp"
+                    android:textSize="20dp"
+                    android:fontFamily="@font/montserrat"
+                    android:layout_gravity="end"
+                    android:gravity="end"
+                    android:textColor="#FFFF"/>
+            </LinearLayout>
+
+        </LinearLayout>
     </LinearLayout>
+
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/lAt"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:orientation="vertical">
-        <ImageButton
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:background="@null"
-            android:src="@drawable/attendence"
-            android:scaleType="fitXY"
-            android:id="@+id/attendence"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Take Attendence"
-            android:gravity="center"
-            android:layout_gravity="center"
-            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:background="@drawable/c4"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_gravity="center"
+                android:id="@+id/lAt">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/i1"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="TAKE ATTENDANCE"
+                    android:textSize="20dp"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:textStyle="bold"
+                    android:textColor="@color/texts"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:background="@drawable/c4"
+                android:id="@+id/lVs"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_gravity="center">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/i2"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="VIEW STUDENT"
+                    android:textSize="20dp"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:textStyle="bold"
+                    android:textColor="@color/texts"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:background="@drawable/c4"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
+                android:id="@+id/lGM"
+                android:layout_gravity="center">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/i3"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="GIVE MARKS"
+                    android:textSize="20dp"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:textStyle="bold"
+                    android:textColor="@color/texts"/>
+            </LinearLayout>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight=".3"></LinearLayout>
     </LinearLayout>
 </LinearLayout>

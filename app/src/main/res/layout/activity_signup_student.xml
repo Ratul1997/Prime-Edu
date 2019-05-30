@@ -58,11 +58,15 @@
                         android:layout_width="100dp"
                         android:layout_height="100dp"
                         android:gravity="center"
+                        android:id="@+id/students"
                         android:background="@drawable/image_shape">
-                        <ImageView
+                        <de.hdodenhof.circleimageview.CircleImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:src="@drawable/camera"
+                            android:paddingLeft="5dp"
+                            android:id="@+id/studentImage"
+                            android:layout_gravity="center"
                             android:layout_marginRight="5dp"/>
                     </LinearLayout>
 
@@ -75,6 +79,7 @@
                             android:layout_height="wrap_content"
                             android:textSize="18dp"
                             android:hint="First name"
+                            android:id="@+id/stuFname"
                             android:paddingLeft="10dp"
                             android:backgroundTint="#297FCA"/>
                         <EditText
@@ -82,6 +87,7 @@
                             android:layout_height="wrap_content"
                             android:textSize="18dp"
                             android:hint="Last name"
+                            android:id="@+id/stuLname"
                             android:paddingLeft="10dp"
                             android:backgroundTint="#297FCA"/>
                     </LinearLayout>
@@ -92,28 +98,58 @@
                     android:layout_height="wrap_content"
                     android:textSize="18dp"
                     android:hint="Email Address"
+                    android:id="@+id/stuEmail"
+                    android:inputType="textEmailAddress"
                     android:paddingLeft="10dp"
                     android:backgroundTint="#297FCA"/>
-                <EditText
+                <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textSize="18dp"
-                    android:hint="Gender"
-                    android:paddingLeft="10dp"
+                    android:id="@+id/stuGender"
+                    android:text="Gender: "
+                    android:paddingLeft="5dp"
                     android:backgroundTint="#297FCA"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <CheckBox
+                        android:layout_weight="30"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/male"
+                        android:text="Male"/>
+                    <CheckBox
+                        android:layout_weight="30"
+                        android:layout_width="wrap_content"
+                        android:id="@+id/female"
+                        android:layout_height="wrap_content"
+                        android:text="Female"/>
+                    <CheckBox
+                        android:id="@+id/other"
+                        android:layout_weight="30"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Other"/>
+                </LinearLayout>
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textSize="18dp"
                     android:hint="Address"
+                    android:id="@+id/stuAddress"
+                    android:inputType="textLongMessage"
                     android:paddingLeft="10dp"
                     android:backgroundTint="#297FCA"/>
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textSize="18dp"
+                    android:id="@+id/stuContact"
                     android:hint="Contact number (if any)"
                     android:paddingLeft="10dp"
+                    android:inputType="numberDecimal"
                     android:backgroundTint="#297FCA"/>
             </LinearLayout>
 
@@ -140,11 +176,15 @@
                         android:layout_width="100dp"
                         android:layout_height="100dp"
                         android:gravity="center"
+                        android:id="@+id/gurdian"
                         android:background="@drawable/image_shape">
-                        <ImageView
+                        <de.hdodenhof.circleimageview.CircleImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:src="@drawable/camera"
+                            android:paddingLeft="5dp"
+                            android:id="@+id/gurdianImage"
+                            android:layout_gravity="center"
                             android:layout_marginRight="5dp"/>
                     </LinearLayout>
 
@@ -158,6 +198,7 @@
                             android:layout_height="wrap_content"
                             android:textSize="18dp"
                             android:hint="Gaurdian's name"
+                            android:id="@+id/gurdianName"
                             android:paddingLeft="10dp"
                             android:backgroundTint="#297FCA"/>
                     </LinearLayout>
@@ -168,6 +209,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textSize="18dp"
+                    android:id="@+id/gurdianRelation"
                     android:hint="Relationship"
                     android:paddingLeft="10dp"
                     android:backgroundTint="#297FCA" />
@@ -177,13 +219,27 @@
                     android:textSize="18dp"
                     android:hint="Email Address"
                     android:paddingLeft="10dp"
+                    android:id="@+id/gurdianEmail"
                     android:backgroundTint="#297FCA"/>
+
+                <EditText
+                    android:id="@+id/gurdianOccu"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="#297FCA"
+                    android:hint="Occupation"
+                    android:paddingLeft="10dp"
+                    android:inputType="textEmailAddress"
+                    android:textSize="18dp" />
+
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textSize="18dp"
                     android:hint="Contact number"
                     android:paddingLeft="10dp"
+                    android:inputType="number"
+                    android:id="@+id/gurdianContact"
                     android:backgroundTint="#297FCA"/>
 
             </LinearLayout>
@@ -195,7 +251,6 @@
                 android:textSize="20dp"
                 android:textStyle="bold"
                 android:layout_marginBottom="15dp"/>
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -207,20 +262,29 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
-                    <EditText
-                        android:layout_weight=".5"
+
+
+                    <Spinner
+                        android:id="@+id/spinner"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textSize="18dp"
-                        android:hint="Class"
+                        android:layout_height="35dp"
+                        android:layout_weight="0.5"
+                        android:background="@drawable/spinner_shape"
+                        android:hint="Name"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:enabled="false"
+                        android:inputType="textLongMessage"
                         android:paddingLeft="10dp"
-                        android:backgroundTint="#297FCA"/>
+                        android:textStyle="bold" />
+
                     <EditText
                         android:layout_weight=".5"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textSize="18dp"
                         android:hint="Section"
+                        android:id="@+id/stuSec"
                         android:paddingLeft="10dp"
                         android:backgroundTint="#297FCA"/>
                 </LinearLayout>
@@ -229,9 +293,21 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textSize="18dp"
+                    android:id="@+id/stuRoll"
+                    android:inputType="number"
                     android:hint="Student Id/Roll"
                     android:paddingLeft="10dp"
                     android:backgroundTint="#297FCA"/>
+
+                <EditText
+                    android:inputType="number"
+                    android:id="@+id/stuSchoolCode"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="#297FCA"
+                    android:hint="School Code"
+                    android:paddingLeft="10dp"
+                    android:textSize="18dp" />
 
             </LinearLayout>
 
@@ -251,13 +327,17 @@
                 android:orientation="vertical"
                 android:layout_marginBottom="30dp">
                 <EditText
+                    android:inputType="textPassword"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textSize="18dp"
+                    android:id="@+id/stuPass"
                     android:hint="Create Password"
                     android:paddingLeft="10dp"
                     android:backgroundTint="#297FCA"/>
                 <EditText
+                    android:inputType="textPassword"
+                    android:id="@+id/stuConfirmPass"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textSize="18dp"
@@ -277,6 +357,7 @@
                     android:layout_height="wrap_content"
                     android:text="Sign-Up"
                     android:textSize="20dp"
+                    android:id="@+id/stuSignup"
                     android:textAllCaps="false"
                     android:layout_gravity="center"
                     android:background="@drawable/login_buttonshape"

@@ -5,15 +5,25 @@ public class ExamDetails {
     private String examstartdate;
     private String examenddate;
     private String publishresultdate;
+    private String routine;
 
-    public ExamDetails(String examname, String examstartdate, String examenddate, String publishresultdate) {
+    public ExamDetails(String examname, String examstartdate, String examenddate, String publishresultdate, String routine) {
         this.examname = examname;
         this.examstartdate = examstartdate;
         this.examenddate = examenddate;
         this.publishresultdate = publishresultdate;
+        this.routine = routine;
     }
 
     public ExamDetails(){}
+
+    public String getRoutine() {
+        return routine;
+    }
+
+    public void setRoutine(String routine) {
+        this.routine = routine;
+    }
 
     public String getExamname() {
         return examname;

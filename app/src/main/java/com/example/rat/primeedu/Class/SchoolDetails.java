@@ -1,6 +1,8 @@
 package com.example.rat.primeedu.Class;
 
-public class SchoolDetails {
+import java.io.Serializable;
+
+public class SchoolDetails implements Serializable{
     private String schoolname;
     private String schoolemail;
     private String schoolstudentnumber;

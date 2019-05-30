@@ -3,9 +3,10 @@
     package="com.example.rat.primeedu">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    1
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    "
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -20,8 +21,33 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <service android:name=".MyFirebaseInstanceIdService">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
+            </intent-filter>
+        </service>
+        <service
+            android:name=".MyFirebaseMessagingService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@drawable/logo" />
+        <!--
+             Set color used with incoming notification messages. This is used when no color is set for the incoming
+             notification message. See README(https://goo.gl/6BKBk7) for more.
+        -->
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_color"
+            android:resource="@color/colorAccent" />
+
         <activity android:name=".Teacher.TeacherActivity" />
-        <activity android:name=".Teacher.AddSection" />
+        <activity android:name=".AuthorityHomeActivity.AddSection" />
         <activity android:name=".Teacher.ClassActivity" />
         <activity android:name=".Teacher.TakeAttendenceActivity" />
         <activity
@@ -35,16 +61,28 @@
             android:resource="@array/preloaded_fonts" />
 
         <activity android:name=".Teacher.InsideSectionActivity" />
-        <activity android:name=".Login.Login" />
-        <activity android:name=".Login.SignUp" />
-        <activity android:name=".TeacherPosts" />
-        <activity android:name=".UploadPicture" />
         <activity android:name=".Login.LoginActivity" />
         <activity android:name=".Login.SignupAuthority" />
         <activity android:name=".Login.SignupStudent" />
         <activity android:name=".Login.SignUpTeacher" />
-        <activity android:name=".SignUp2" />
-        <activity android:name=".AuthorityHomeActivity.AuthorityMainActivity"></activity>
+        <activity android:name=".AuthorityHomeActivity.AuthorityMainActivity" />
+        <activity android:name=".AuthorityHomeActivity.AuthorityNotice" />
+        <activity android:name=".AuthorityHomeActivity.AuthorityCreateClass" />
+        <activity android:name=".Student.StudentActivity" />
+        <activity android:name=".Student.AttendenceActivity" />
+        <activity android:name=".Student.StudentMarkActivity" />
+        <activity android:name=".Student.StudentNotices" />
+        <activity android:name=".AuthorityHomeActivity.TeachersInSchool" />
+        <activity android:name=".AuthorityHomeActivity.CreatePost" />
+        <activity android:name=".Class.ZoomAbleImageActivity" />
+        <activity android:name=".AuthorityHomeActivity.UpComingExamAuthority" />
+        <activity android:name=".Teacher.TeacherClassActivity" />
+        <activity android:name=".Teacher.TeacherPost" />
+        <activity android:name=".Teacher.TeacherProfile" />
+        <activity android:name=".Student.AboutStudent" />
+        <activity android:name=".AuthorityHomeActivity.AuthorityAbout" />
+        <activity android:name=".Login.ForgetPass" />
+        <activity android:name=".Student.TeacherNotice"></activity>
     </application>
 
 </manifest>

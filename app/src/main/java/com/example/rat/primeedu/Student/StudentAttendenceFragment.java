@@ -2,6 +2,7 @@ package com.example.rat.primeedu.Student;
 
 import android.annotation.SuppressLint;
 import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -55,18 +56,19 @@ public class StudentAttendenceFragment extends Fragment {
 
 
     private String url = "SchoolName/Class/";
-    Dialog dialog;
+    ProgressDialog dialog;
     List<String> presentDays = new ArrayList<>();
     List<String> absentDays = new ArrayList<>();
     TextView month;
-    private String CurrentSection,Currentclass,CurrentStudent;
+    private String CurrentSection,Currentclass,CurrentStudent,SchoolId;
     private SimpleDateFormat dateFormatForMonth = new SimpleDateFormat("MMM - yyyy", Locale.getDefault());
 
 
-    public StudentAttendenceFragment(String currentStudent, String currentclass, String currentSection) {
+    public StudentAttendenceFragment(String currentStudent, String currentclass, String currentSection, String schoolId) {
         CurrentSection = currentSection;
         Currentclass = currentclass;
         CurrentStudent = currentStudent;
+        this.SchoolId = schoolId;
     }
 
     @Override
@@ -87,35 +89,38 @@ public class StudentAttendenceFragment extends Fragment {
 
     private void init(View v) {
         getAttendenceData(v);
-        //createPieChart(v);
-       // createCalender(v);
 
     }
+
     private void showLoading() {
 
-        dialog = new Dialog(getActivity());
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
-        dialog.setContentView(R.layout.loadingprogressbar);
+        dialog = new ProgressDialog(getContext());
+        dialog.setIndeterminate(true);
+        dialog.setCancelable(false);
+        dialog.setMessage("Please Wait ...");
+        dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        dialog.show();
         dialog.show();
     }
 
     private void getAttendenceData(final View v) {
-
+        showLoading();
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-        String path = url+Currentclass+"/Section/"+CurrentSection+"/"+CurrentStudent+"/Attendence";
+        String path = "Classes/"+SchoolId+"/class/"+Currentclass+"/Section/"+CurrentSection+"/"+CurrentStudent+"/Attendence/";
         System.out.println(path);
         DatabaseReference databaseReference = firebaseDatabase.getReference(path);
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                presentDays.clear();
+                absentDays.clear();
                 for(DataSnapshot snapshot: dataSnapshot.getChildren()){
 
                     String status = snapshot.getValue(String.class);
                     if(status.equals("P"))presentDays.add(snapshot.getKey());
                     else absentDays.add(snapshot.getKey());
                 }
-//                dialog.dismiss();
+                dialog.dismiss();
                 createPieChart(v);
                 createCalender(v);
             }
@@ -149,7 +154,7 @@ public class StudentAttendenceFragment extends Fragment {
         }
         else if(percentOfPresentDay<=80.0 && percentOfPresentDay>=60.0){
             attendenceMsg.setText("Your Attendance is not fascinating.");
-            attendenceMsg.setTextColor(Color.YELLOW);
+            attendenceMsg.setTextColor(Color.BLUE);
         }
         else {
             attendenceMsg.setTextColor(Color.parseColor("#FF0000"));
@@ -164,66 +169,28 @@ public class StudentAttendenceFragment extends Fragment {
 
         ArrayList status = new ArrayList();
 
+
+        final  int[] MY_COLORS = {
+
+                Color. rgb(47,127,202),
+                Color.  rgb(220,220,220)
+        };
+
+        ArrayList<Integer> colors = new ArrayList<>();
+
+        for(int c: MY_COLORS) colors.add(c);
+
         status.add("Present");
         status.add("Absent");
         PieData data = new PieData(status, dataSet);
-        pieChart.setCenterText("Attendance in percentage");
-        pieChart.setCenterTextSize(10f);
-        pieChart.setCenterTextColor(Color.parseColor("#0097A7"));
+        pieChart.setCenterText(Float.toString(percentOfPresentDay)+"%");
+        pieChart.setCenterTextSize(12f);
+        pieChart.setCenterTextColor(Color.parseColor("#2F7FCA"));
         pieChart.setData(data);
-        dataSet.setColors(ColorTemplate.COLORFUL_COLORS);
+        dataSet.setColors(colors);
+
         pieChart.animateXY(5000, 5000);
     }
-
-//    private void barcharts(View v) {
-//        BarChart chart = (BarChart) v.findViewById(R.id.barchart);
-//        ArrayList NoOfEmp = new ArrayList();
-//
-//
-//        NoOfEmp.add(new BarEntry(945f, 0));
-//        NoOfEmp.add(new BarEntry(1040f, 1));
-//
-//
-//        ArrayList NoOfEmp1 = new ArrayList();
-//
-//
-//        NoOfEmp1.add(new BarEntry(900f, 0));
-//        NoOfEmp1.add(new BarEntry(1000f, 1));
-//
-//        ArrayList year = new ArrayList();
-//
-//        ArrayList year1 = new ArrayList();
-//
-//        year.add("1");
-//        year.add("2");
-//        year.add("3");
-//
-//        year1.add("2006");
-//        year1.add("2004");
-//        BarDataSet bardataset1 = new BarDataSet(NoOfEmp, "No Of Employee1");
-//        BarDataSet bardataset2 = new BarDataSet(NoOfEmp1, "No Of Employee");
-//
-//
-//        bardataset1.setColor(Color.GREEN);
-//        bardataset2.setColor(Color.RED);
-//
-//
-////
-////        chart.animateY(5000);
-//
-//        ArrayList<IBarDataSet> dataSets = new ArrayList<>();
-//        dataSets.add(bardataset1);
-//        dataSets.add(bardataset2);
-//
-//        BarData data = new BarData(year, dataSets);
-//
-//        chart.setData(data);
-//
-//
-//        chart.invalidate();
-//
-//
-//    }
 
     private void createCalender(View v) {
 

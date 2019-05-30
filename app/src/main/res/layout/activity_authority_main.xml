@@ -3,172 +3,271 @@
     android:layout_height="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical">
-    <ScrollView android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/authority"
-        xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_weight=".4"
+        android:layout_height="0dp"
+        android:layout_gravity="center"
+        android:background="@drawable/t10"
+        android:gravity="center|start"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_marginLeft="10dp"
+            android:orientation="vertical">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/profilePic"
+                android:layout_width="80dp"
+                android:layout_marginTop="20dp"
+                android:layout_height="0dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="5dp"
+                android:layout_weight=".2"
+                android:src="@drawable/au1" />
+
+
+            <TextView
+                android:id="@+id/school_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="5dp"
+                android:layout_weight=".02"
+                android:autoSizeMaxTextSize="100sp"
+                android:autoSizeMinTextSize="12sp"
+                android:autoSizeStepGranularity="2sp"
+                android:autoSizeTextType="uniform"
+                android:fontFamily="@font/montserrat"
+                android:text="School Name"
+                android:textColor="@color/cast_expanded_controller_text_color"
+                android:textSize="18sp" />
+
+            <TextView
+
+                android:id="@+id/idOfSchool"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="5dp"
+                android:layout_weight=".02"
+                android:autoSizeMaxTextSize="100sp"
+                android:autoSizeMinTextSize="12sp"
+                android:autoSizeStepGranularity="2sp"
+                android:autoSizeTextType="uniform"
+                android:fontFamily="@font/montserrat"
+                android:text="School Id"
+                android:textColor="@color/cast_expanded_controller_text_color"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:layout_marginTop="5dp">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:src="@drawable/au2"
+                android:layout_weight="1"/>
+            <ImageButton
+                android:id="@+id/options"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight=".2"
+                android:layout_gravity="end"
+                android:layout_marginBottom="10dp"
+                android:layout_marginRight="15dp"
+                android:background="@null"
+                android:src="@drawable/ic_action_down" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_gravity="center"
+        android:layout_weight="1">
+
         <GridLayout
-            android:rowCount="2"
+            android:layout_marginTop="10dp"
+            android:rowCount="3"
             android:columnCount="2"
             android:layout_gravity="center"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="0dp"
 
+            >
             <LinearLayout
-                android:layout_width="150dp"
+                android:layout_width="120dp"
                 android:layout_height="150dp"
-                android:background="@drawable/card"
                 android:layout_gravity="center"
+                android:gravity="center"
                 android:id="@+id/viewClass"
-                android:gravity="center"
+                android:background="@drawable/bottomright"
                 android:orientation="vertical"
                 >
+
                 <ImageView
-                    android:layout_marginTop="10dp"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
-                    android:src="@drawable/presentation"
-                    />
+                    android:layout_marginTop="10dp"
+                    android:src="@drawable/au3" />
+
                 <TextView
-                    android:layout_marginTop="3dp"
+                    android:id="@+id/attendences"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Classes"
-                    android:layout_marginBottom="10dp"
-                    android:gravity="center"
                     android:layout_gravity="center"
-                    />
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="3dp"
+                    android:gravity="center"
+                    android:fontFamily="@font/montserrat"
+                    android:text="CLASS" />
             </LinearLayout>
-
             <LinearLayout
-                android:layout_width="150dp"
+                android:layout_width="120dp"
                 android:layout_height="150dp"
+                android:layout_gravity="center"
+                android:gravity="center"
                 android:id="@+id/viewTeacher"
-                android:background="@drawable/card"
-                android:layout_gravity="center"
-                android:gravity="center"
+                android:background="@drawable/bottom"
                 android:orientation="vertical"
                 >
+
                 <ImageView
-                    android:layout_marginTop="10dp"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
-                    android:src="@drawable/teacher"
-                    />
+                    android:layout_marginTop="10dp"
+                    android:src="@drawable/au4" />
+
                 <TextView
-                    android:layout_marginTop="3dp"
+                    android:id="@+id/marks"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Teachers"
-                    android:layout_marginBottom="10dp"
-                    android:gravity="center"
                     android:layout_gravity="center"
-                    />
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="3dp"
+                    android:gravity="center"
+                    android:fontFamily="@font/montserrat"
+                    android:text="TEACHERS" />
             </LinearLayout>
-
             <LinearLayout
-                android:layout_width="150dp"
+                android:layout_width="120dp"
                 android:layout_height="150dp"
-                android:background="@drawable/card"
                 android:layout_gravity="center"
                 android:gravity="center"
-                android:id="@+id/viewStudent"
+                android:id="@+id/viewExams"
+                android:background="@drawable/bottomright"
                 android:orientation="vertical"
                 >
+
                 <ImageView
-                    android:layout_marginTop="10dp"
+                    android:id="@+id/notices"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
-                    android:src="@drawable/man"
-                    />
+                    android:layout_marginTop="10dp"
+                    android:src="@drawable/au5"/>
+
                 <TextView
-                    android:layout_marginTop="3dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Students"
-                    android:layout_marginBottom="10dp"
-                    android:gravity="center"
                     android:layout_gravity="center"
-                    />
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="3dp"
+                    android:gravity="center"
+                    android:text="EXAMS"
+                    android:fontFamily="@font/montserrat"/>
             </LinearLayout>
-
             <LinearLayout
-                android:layout_width="150dp"
+                android:layout_width="120dp"
+                android:background="@drawable/bottom"
                 android:layout_height="150dp"
-                android:background="@drawable/card"
                 android:layout_gravity="center"
+                android:gravity="center"
                 android:id="@+id/viewNotice"
-                android:gravity="center"
                 android:orientation="vertical"
                 >
                 <ImageView
                     android:layout_marginTop="10dp"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
-                    android:src="@drawable/postit"
+                    android:src="@drawable/au6"
                     />
                 <TextView
                     android:layout_marginTop="3dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Notices"
+                    android:text="NOTICE BOARD"
                     android:layout_marginBottom="10dp"
                     android:gravity="center"
+                    android:fontFamily="@font/montserrat"
                     android:layout_gravity="center"
                     />
             </LinearLayout>
-
             <LinearLayout
-                android:layout_width="150dp"
+                android:layout_width="120dp"
                 android:layout_height="150dp"
-                android:background="@drawable/card"
                 android:layout_gravity="center"
-                android:gravity="center"
                 android:id="@+id/viewPayments"
+                android:gravity="center"
                 android:orientation="vertical"
+                android:background="@drawable/right"
                 >
+
                 <ImageView
-                    android:layout_marginTop="10dp"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
-                    android:src="@drawable/receipt"
-                    />
+                    android:layout_marginTop="10dp"
+                    android:src="@drawable/au7" />
                 <TextView
                     android:layout_marginTop="3dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Payments"
+                    android:text="PAYMENTS"
                     android:layout_marginBottom="10dp"
                     android:gravity="center"
+                    android:fontFamily="@font/montserrat"
                     android:layout_gravity="center"
                     />
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="150dp"
+                android:id="@+id/about"
+                android:layout_width="120dp"
                 android:layout_height="150dp"
-                android:background="@drawable/card"
                 android:layout_gravity="center"
                 android:gravity="center"
-                android:orientation="vertical"
-                >
+                android:orientation="vertical">
+
                 <ImageView
-                    android:layout_marginTop="10dp"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
-                    android:src="@drawable/school"
-                    />
+                    android:layout_marginTop="10dp"
+                    android:src="@drawable/au8" />
+
                 <TextView
-                    android:layout_marginTop="3dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="About"
-                    android:layout_marginBottom="10dp"
-                    android:gravity="center"
                     android:layout_gravity="center"
-                    />
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="3dp"
+                    android:gravity="center"
+                    android:text="AUTHORITY DETAILS" />
             </LinearLayout>
-
         </GridLayout>
     </ScrollView>
 </LinearLayout>

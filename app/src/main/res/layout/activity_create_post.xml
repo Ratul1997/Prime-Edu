@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="4">
+
+    <LinearLayout
+        android:layout_weight=".9"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="90dp"
+            android:background="@drawable/t10"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_arrow_left"
+                android:layout_gravity="center"
+                android:background="@null"
+                android:layout_marginTop="5dp"
+                android:layout_weight="5"
+                android:id="@+id/back"
+                android:layout_marginLeft="5dp"/>
+            <TextView
+                android:layout_weight="85"
+                android:id="@+id/school_name"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:paddingLeft="5dp"
+                android:autoSizeMaxTextSize="100sp"
+                android:autoSizeMinTextSize="12sp"
+                android:autoSizeStepGranularity="2sp"
+                android:autoSizeTextType="uniform"
+                android:gravity="center"
+                android:padding="5dp"
+                android:fontFamily="@font/montserrat"
+                android:textColor="@color/common_google_signin_btn_text_dark"
+                android:text="School Name"/>
+
+            <Button
+                android:layout_weight="10"
+                android:layout_marginRight="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/postButton"
+                android:text="Post"
+                android:layout_gravity="center"
+                android:gravity="center"
+                />
+        </LinearLayout>
+
+
+
+        <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginRight="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:weightSum="3">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin = "10dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/imageFile"
+                    android:layout_width="170dp"
+                    android:layout_height="200dp"
+                    android:layout_margin="15dp"
+                    android:padding="10dp"
+                    app:srcCompat="@drawable/camera1" />
+
+                <Button
+                    android:id="@+id/upload_image"
+                    style="@style/AppTheme"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:text="Upload Image"
+                    android:textColor="@android:color/holo_blue_dark"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_margin="10dp"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:text="Please Select One: "/>
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:id="@+id/terms"
+                    android:layout_height="wrap_content"
+                    android:text="Term Exam"/>
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:id="@+id/announcements"
+                    android:layout_height="wrap_content"
+                    android:text="Announcement"/>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/medicineListHeader"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:text="Massage :"
+                android:textSize="25sp" />
+
+            <EditText
+                android:id="@+id/msg"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_margin="10dp"
+                android:background="@drawable/border"
+                android:gravity="top"
+                android:inputType="textMultiLine"
+                android:maxLines="100"
+                android:minEms="0"
+                android:padding="16dp"
+                android:textColor="@android:color/black"
+                android:textCursorDrawable="@drawable/cursor_color"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/nameIs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:text="Exam Details: "
+                android:textSize="25sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="@drawable/border"
+                android:orientation="vertical">
+
+
+                <Spinner
+                    android:id="@+id/spinner_id"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="2dp"
+                    android:background="@drawable/spinner_shape"
+                    android:textAlignment="textStart"></Spinner>
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="Starting Date"
+                    android:id="@+id/start"
+                    android:inputType="date"
+                    android:layout_margin="3dp"
+                    />
+
+                <EditText
+                    android:inputType="date"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="Ending Date"
+                    android:id="@+id/end"
+                    />
+
+                <EditText
+                    android:inputType="date"
+                    android:id="@+id/publish"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="Publish Date"
+                    />
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
+</LinearLayout>
