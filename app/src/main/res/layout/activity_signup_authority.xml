@@ -157,25 +157,69 @@
                 android:orientation="vertical"
                 android:layout_marginBottom="30dp">
 
-                <EditText
-                    android:id="@+id/schoolPassword"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="#297FCA"
-                    android:hint="Create Password"
-                    android:paddingLeft="10dp"
-                    android:inputType="textPassword"
-                    android:textSize="18dp" />
 
-                <EditText
-                    android:id="@+id/confirmPass"
-                    android:inputType="textPassword"
+                <android.support.constraint.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="#297FCA"
-                    android:hint="Confirm Password"
-                    android:paddingLeft="10dp"
-                    android:textSize="18dp" />
+                    android:layout_height="wrap_content">
+                    <EditText
+                        android:id="@+id/schoolPassword"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="#297FCA"
+                        android:hint="Create Password"
+                        android:paddingLeft="10dp"
+                        android:inputType="textPassword"
+                        android:textSize="18dp" />
+
+                    <ImageButton
+                        android:id="@+id/showPass1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="21dp"
+                        android:layout_marginBottom="2dp"
+                        android:layout_marginEnd="2dp"
+                        android:layout_marginStart="2dp"
+                        android:layout_marginTop="2dp"
+                        android:background="@null"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.953"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/ic_action_pass" />
+
+                </android.support.constraint.ConstraintLayout>
+                <android.support.constraint.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+
+                    <EditText
+                        android:id="@+id/confirmPass"
+                        android:inputType="textPassword"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="#297FCA"
+                        android:hint="Confirm Password"
+                        android:paddingLeft="10dp"
+                        android:textSize="18dp" />
+
+                    <ImageButton
+                        android:id="@+id/showPass2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="21dp"
+                        android:layout_marginBottom="2dp"
+                        android:layout_marginEnd="2dp"
+                        android:layout_marginStart="2dp"
+                        android:layout_marginTop="2dp"
+                        android:background="@null"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.953"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/ic_action_pass" />
+
+                </android.support.constraint.ConstraintLayout>
             </LinearLayout>
 
             <LinearLayout

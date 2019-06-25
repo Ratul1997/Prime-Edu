@@ -132,7 +132,7 @@
                 android:layout_marginLeft="15dp"
                 android:layout_marginTop="10dp"
                 android:gravity="center"
-                android:text="Massage :"
+                android:text="Message :"
                 android:textSize="25sp" />
 
             <EditText
@@ -179,7 +179,7 @@
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:hint="Starting Date"
+                    android:hint="Starting Date (ex. 10/05/2019)"
                     android:id="@+id/start"
                     android:inputType="date"
                     android:layout_margin="3dp"
@@ -189,7 +189,7 @@
                     android:inputType="date"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:hint="Ending Date"
+                    android:hint="Ending Date (ex. 10/05/2019)"
                     android:id="@+id/end"
                     />
 
@@ -198,7 +198,7 @@
                     android:id="@+id/publish"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:hint="Publish Date"
+                    android:hint="Publish Date (ex. 10/05/2019)"
                     />
             </LinearLayout>
 

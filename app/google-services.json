@@ -10,7 +10,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:594260183595:android:207344196a51b175",
         "android_client_info": {
-          "package_name": "com.example.rat.primeedu"
+          "package_name": "com.primeedu.rat.primeedu"
         }
       },
       "oauth_client": [
@@ -18,7 +18,7 @@
           "client_id": "594260183595-fh3evcagnlr0mvthbgbpki1rb46veskh.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.rat.primeedu",
+            "package_name": "com.primeedu.rat.primeedu",
             "certificate_hash": "fc1e19d0906f2e82ae398d05cc16e26931e595e7"
           }
         },

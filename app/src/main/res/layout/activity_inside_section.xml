@@ -73,20 +73,29 @@
                     android:layout_height="0dp"
                     android:layout_weight=".6"
                     android:textColor="#FFFF"
-                    android:text="Class: 10"
+                    android:text="Class: Nursery"
                     android:id="@+id/cls"
                     android:textStyle="bold"
+                    android:autoSizeMaxTextSize="100sp"
+                    android:autoSizeMinTextSize="12sp"
+                    android:autoSizeStepGranularity="2sp"
+                    android:autoSizeTextType="uniform"
                     android:fontFamily="@font/montserrat"
                     android:textSize="35dp"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
-                    android:layout_weight="1"
+                    android:layout_weight=".4"
                     android:textColor="#FFFF"
                     android:id="@+id/sec"
-                    android:text="SECTION: A"
+                    android:autoSizeMaxTextSize="100sp"
+                    android:autoSizeMinTextSize="12sp"
+                    android:autoSizeStepGranularity="2sp"
+                    android:autoSizeTextType="uniform"
+
+                    android:text="SECTION: Kornofuli"
                     android:fontFamily="@font/montserrat"
-                    android:textSize="25dp"
+                    android:textSize="20dp"
                     android:layout_marginBottom="15dp"/>
             </LinearLayout>
             <LinearLayout

@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout android:layout_width="match_parent"
+<ScrollView android:layout_width="match_parent"
     android:layout_height="match_parent"
-    style="@style/MarksTheme"
     xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <FrameLayout android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        style="@style/MarksTheme"
+        xmlns:android="http://schemas.android.com/apk/res/android">
 
     <LinearLayout android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -13,8 +17,7 @@
         <LinearLayout
 
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
+            android:layout_height="200dp"
             android:background="@drawable/t10"
             android:orientation="vertical">
 
@@ -154,8 +157,8 @@
         </LinearLayout>
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:layout_weight=".4"
+            android:layout_height="50dp"
+            android:layout_margin="15dp"
             android:orientation="horizontal"
             android:layout_gravity="center"
             android:gravity="center">
@@ -186,6 +189,8 @@
                     android:layout_height="wrap_content"
                     android:hint="Subject Name"
                     android:paddingLeft="2dp"
+                    android:textSize="15dp"
+                    android:layout_gravity="center"
                     android:paddingRight="2dp"
                     android:inputType="textLongMessage"
                     android:textStyle="bold" />
@@ -308,4 +313,6 @@
             />
     </LinearLayout>
 
-</FrameLayout>
+    </FrameLayout>
+
+</ScrollView>

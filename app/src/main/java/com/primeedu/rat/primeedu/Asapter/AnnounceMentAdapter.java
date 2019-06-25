@@ -1,0 +1,138 @@
+package com.primeedu.rat.primeedu.Asapter;
+
+import android.content.Context;
+import android.support.annotation.NonNull;
+import android.support.v7.widget.CardView;
+import android.support.v7.widget.RecyclerView;
+import android.util.Pair;
+import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.PopupMenu;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.primeedu.rat.primeedu.Class.AnnouncementWithClass;
+import com.primeedu.rat.primeedu.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+public class AnnounceMentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
+    List<Pair<String,AnnouncementWithClass>>Announcement = new ArrayList<>();
+    Context context;
+    String type;
+    String SchoolId;
+
+    public AnnounceMentAdapter(List<Pair<String,AnnouncementWithClass>> announcement, Context context, String type,String SchoolId) {
+        Announcement = announcement;
+        this.context = context;
+        this.type = type;
+        this.SchoolId = SchoolId;
+    }
+
+    @NonNull
+    @Override
+    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.renderannouncement, parent, false);
+
+
+        return new ViewHolder(v);
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, final int position) {
+
+        ((ViewHolder) holder).txt.setText(Announcement.get(position).second.getMSg());
+
+        SimpleDateFormat myFormat = new SimpleDateFormat("dd-MM-yyyy-HH-mm-ss");
+        Date date = null;
+        try {
+            date =myFormat.parse(Announcement.get(position).first);
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy |(HH:mm)");
+        ((ViewHolder)holder).date.setText("-- "+ formatter.format(date));
+
+        String s = "";
+        if(type.equals("1"))s = Announcement.get(position).second.getClasses();
+        else s = "Class: "+Announcement.get(position).second.getClasses();
+        ((ViewHolder) holder).cls.setText(s);
+
+        if(type.equals("1"))((ViewHolder)holder).lin.setEnabled(false);
+        ((ViewHolder)holder).lin.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                PopupMenu popup = new PopupMenu(v.getContext(), v, Gravity.RIGHT);
+
+                popup.getMenuInflater().inflate(R.menu.delete,popup.getMenu());
+
+
+                popup.getMenu().findItem(R.id.edit).setVisible(false);
+                popup.getMenu().findItem(R.id.edit).setEnabled(false);
+
+                popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+
+                        if(item.getItemId() == R.id.deletepost){
+
+                            String path = "Classes/"+SchoolId+"/class/"+Announcement.get(position).second.getClasses()+"/AnnounceMents/AnnounceMent/"+Announcement.get(position).first;
+                            DatabaseReference ref = FirebaseDatabase.getInstance().getReference(path);
+
+                            ref.removeValue()
+                                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task) {
+                                            if(task.isSuccessful()){
+                                                Toast.makeText(context, "Successfully deleted.", Toast.LENGTH_SHORT).show();
+                                            }
+                                        }
+                                    });
+                        }
+
+                        return true;
+                    }
+                });
+
+                popup.show();
+
+
+                return true;
+            }
+        });
+
+    }
+
+    @Override
+    public int getItemCount() {
+        return Announcement.size();
+    }
+
+    public static class ViewHolder extends RecyclerView.ViewHolder{
+
+        public TextView txt,cls,date;
+        public CardView lin;
+        public ViewHolder(@NonNull View itemView) {
+            super(itemView);
+
+            date = (TextView)itemView.findViewById(R.id.date);
+
+            lin = (CardView)itemView.findViewById(R.id.lin);
+            cls = (TextView)itemView.findViewById(R.id.cls);
+            txt = (TextView) itemView.findViewById(R.id.txt);
+        }
+    }
+}

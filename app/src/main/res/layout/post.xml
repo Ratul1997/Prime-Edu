@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android" >
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:text="Enter You Massage"
+        android:fontFamily="@font/montserrat"
+        android:textSize="21dp"
+        android:textColor="@color/texts"
+        android:layout_gravity="center"/>
+    <View
+        android:layout_width="210dp"
+        android:layout_gravity="center"
+        android:layout_height="2dp"
+        android:background="@color/texts" />
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:background="#f2eaac"
+        android:id="@+id/lin"
+        android:layout_marginBottom="5dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_margin="5dp"
+            android:layout_gravity="center"
+            android:gravity="center">
+
+            <EditText
+                android:layout_marginTop="10dp"
+                android:id="@+id/newPostWritten"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="80dp"
+                android:padding="10dp"
+                android:layout_gravity="center"
+                android:background="@drawable/annoucement"
+                android:gravity="top|start"
+                android:inputType="textMultiLine"
+                android:layout_margin="5dp"
+                android:textSize="15dp" />
+
+            <ImageButton
+
+                android:layout_width="0dp"
+                android:layout_weight=".3"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:scaleType="fitCenter"
+                android:src="@drawable/gn3"
+                android:layout_margin="5dp"
+                android:gravity="center"
+                android:id="@+id/post"
+                android:layout_gravity="center"
+                />
+
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+
+
+</LinearLayout>

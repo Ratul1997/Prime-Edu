@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.rat.primeedu">
+    package="com.primeedu.rat.primeedu">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -14,7 +14,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="${applicationId}.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths"/>
+        </provider>
+        <activity android:name=".MainActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -46,43 +56,77 @@
             android:name="com.google.firebase.messaging.default_notification_color"
             android:resource="@color/colorAccent" />
 
-        <activity android:name=".Teacher.TeacherActivity" />
-        <activity android:name=".AuthorityHomeActivity.AddSection" />
-        <activity android:name=".Teacher.ClassActivity" />
-        <activity android:name=".Teacher.TakeAttendenceActivity" />
+        <activity android:name=".Teacher.TeacherActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".AuthorityHomeActivity.AddSection"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Teacher.ClassActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Teacher.TakeAttendenceActivity"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".Teacher.GiveMarksToStudent"
+            android:screenOrientation="portrait"
             android:theme="@style/MarksTheme" />
-        <activity android:name=".Teacher.ViewStudentActivity" />
-        <activity android:name=".Teacher.StudentProfileByTeacher" />
+        <activity android:name=".Teacher.ViewStudentActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Teacher.StudentProfileByTeacher"
+            android:screenOrientation="portrait"/>
 
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
 
-        <activity android:name=".Teacher.InsideSectionActivity" />
-        <activity android:name=".Login.LoginActivity" />
-        <activity android:name=".Login.SignupAuthority" />
-        <activity android:name=".Login.SignupStudent" />
-        <activity android:name=".Login.SignUpTeacher" />
-        <activity android:name=".AuthorityHomeActivity.AuthorityMainActivity" />
-        <activity android:name=".AuthorityHomeActivity.AuthorityNotice" />
-        <activity android:name=".AuthorityHomeActivity.AuthorityCreateClass" />
-        <activity android:name=".Student.StudentActivity" />
-        <activity android:name=".Student.AttendenceActivity" />
-        <activity android:name=".Student.StudentMarkActivity" />
-        <activity android:name=".Student.StudentNotices" />
-        <activity android:name=".AuthorityHomeActivity.TeachersInSchool" />
-        <activity android:name=".AuthorityHomeActivity.CreatePost" />
-        <activity android:name=".Class.ZoomAbleImageActivity" />
-        <activity android:name=".AuthorityHomeActivity.UpComingExamAuthority" />
-        <activity android:name=".Teacher.TeacherClassActivity" />
-        <activity android:name=".Teacher.TeacherPost" />
-        <activity android:name=".Teacher.TeacherProfile" />
-        <activity android:name=".Student.AboutStudent" />
-        <activity android:name=".AuthorityHomeActivity.AuthorityAbout" />
-        <activity android:name=".Login.ForgetPass" />
-        <activity android:name=".Student.TeacherNotice"></activity>
+        <activity android:name=".Teacher.InsideSectionActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Login.LoginActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Login.SignupAuthority"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Login.SignupStudent"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Login.SignUpTeacher"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".AuthorityHomeActivity.AuthorityMainActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".AuthorityHomeActivity.AuthorityNotice"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".AuthorityHomeActivity.AuthorityCreateClass"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Student.StudentActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Student.AttendenceActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Student.StudentMarkActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Student.StudentNotices"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".AuthorityHomeActivity.TeachersInSchool"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".AuthorityHomeActivity.CreatePost"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Class.ZoomAbleImageActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".AuthorityHomeActivity.UpComingExamAuthority"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Teacher.TeacherClassActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Teacher.TeacherPost"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Teacher.TeacherProfile"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Student.AboutStudent"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".AuthorityHomeActivity.AuthorityAbout"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Login.ForgetPass"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Student.TeacherNotice"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Admin"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Teacher.TeacherAvailableSection"
+            android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>
